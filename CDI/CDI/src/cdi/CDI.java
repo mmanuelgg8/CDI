@@ -5,17 +5,34 @@
  */
 package cdi;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
 /**
  *
  * @author mmanu
  */
 public class CDI {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args){
+        
+        Alumno al1 = new Alumno();
+        Alumno al2 = new Alumno();
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CDIPU");
+        EntityManager em = emf.createEntityManager();
+        // 3-Persists the book to the database
+        
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(al1);
+        em.persist(al2);
+        tx.commit();
+        
+        em.close();
+        emf.close();
+        
+        
     }
-    
 }
