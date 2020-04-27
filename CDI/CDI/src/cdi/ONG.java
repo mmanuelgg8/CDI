@@ -5,27 +5,18 @@
  */
 package cdi;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
-public class ONG extends Usuario implements Serializable{
-
-    @Id
+public class ONG extends Usuario {
+    
     private String ubicacion;
     private String web;
-    private List<Inscripcion> se_encarga_de;
-
-    public List<Inscripcion> getSe_encarga_de() {
-        return se_encarga_de;
-    }
-
-    public void setSe_encarga_de(List<Inscripcion> se_encarga_de) {
-        this.se_encarga_de = se_encarga_de;
-    }
-
+    @OneToMany(mappedBy = "es_gestionada_por")
+    private List<Actividad> gestiona;
     
     public String getUbicacion() {
         return ubicacion;

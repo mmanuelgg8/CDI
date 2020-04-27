@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -32,7 +33,15 @@ public class Inscripcion implements Serializable {
     private Date fecha;
     @OneToMany
     private List<Informe> contiene;
+    @ManyToOne
+    private Actividad esta_asociada_a;
 
+    @ManyToOne
+    private Usuario pertenece_a;
+
+    @ManyToOne
+    private PDI es_administrada_por;
+    
     public List<Informe> getContiene() {
         return contiene;
     }

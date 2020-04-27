@@ -16,6 +16,8 @@ public class Informe implements Serializable {
     private boolean reportado;
     private String comentarios;
     
+    
+    
    public Long getId() {
         return id;
     }

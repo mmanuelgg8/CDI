@@ -12,6 +12,9 @@
     <class>cdi.ONG</class>
     <class>cdi.Proyecto</class>
     <class>cdi.Informe</class>
+    <class>cdi.Usuario</class>
+    <class>cdi.Etiqueta</class>
+    <class>cdi.Propiedad</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/cdi"/>
       <property name="javax.persistence.jdbc.user" value="cdi"/>

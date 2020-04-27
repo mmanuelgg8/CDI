@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -37,6 +39,21 @@ public class Actividad implements Serializable {
     private String horario;
     private String motivo;
 
+    @ManyToOne
+    private Proyecto pertenece_a;
+    
+    @ManyToOne
+    private Usuario es_elegida_por;
+
+    @ManyToOne
+    private ONG es_gestionada_por;
+    
+    @ManyToOne
+    private PDI es_gestionada;
+    
+    @OneToMany(mappedBy = "esta_asociada_a")
+    private List<Inscripcion> lista_de_inscritos;
+    
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
     }

@@ -20,16 +20,20 @@ public class CDI {
         Alumno al1 = new Alumno();
         Alumno al2 = new Alumno();
         
+        al1.id=6L;
+        al2.id=7L;
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("CDIPU");
         EntityManager em = emf.createEntityManager();
         // 3-Persists the book to the database
         
         EntityTransaction tx = em.getTransaction();
+       
         tx.begin();
         em.persist(al1);
         em.persist(al2);
         tx.commit();
-        
+       
         em.close();
         emf.close();
         

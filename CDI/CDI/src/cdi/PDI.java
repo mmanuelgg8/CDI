@@ -8,10 +8,8 @@ package cdi;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,10 +17,6 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class PDI extends Usuario implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     
     private String apellido1;
     private String apellido2;
@@ -31,16 +25,26 @@ public class PDI extends Usuario implements Serializable {
     private String deparatmento;
     private int despacho;
     private boolean rol_gestor;
+    
+    @OneToMany(mappedBy = "es_gestionada")
+    private List<Actividad> gestiona;
+    
+    @OneToMany(mappedBy = "es_creado_por")
+    private List<Proyecto> crea;
 
-    public List<Asignatura> getEnseña_en() {
-        return enseña_en;
-    }
-
+    @OneToMany(mappedBy = "es_administrada_por")
+    private List<Inscripcion> administra;
+    
+    @ManyToMany(mappedBy="es_gestionada_por")
+    private List<Asignatura> enseña_en;
+    
     public void setEnseña_en(List<Asignatura> enseña_en) {
         this.enseña_en = enseña_en;
     }
-    @ManyToMany(mappedBy="es_gestionada_por")
-    private List<Asignatura> enseña_en;
+    
+    public List<Asignatura> getEnseña_en() {
+        return enseña_en;
+    }
 
     public String getApellido1() {
         return apellido1;

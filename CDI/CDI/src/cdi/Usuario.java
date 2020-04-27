@@ -5,30 +5,43 @@
  */
 package cdi;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 /**
  *
  * @author mmanu
  */
-public class Usuario {
+@Entity
+public class Usuario implements Serializable {
+    @Id
     Long id;
     private String nombre;
     private String email;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha_prefer;
     private String ambito_prefer;
     private String trabajo_prefer;
     private int telefono;
     private String username;
     private String password;
-    private List<Inscripcion> inscrito_en;
+    
+    @OneToMany(mappedBy = "pertenece_a")
+    private List<Inscripcion> esta_inscrito_en;
+    
+    @OneToMany(mappedBy = "es_elegida_por")
+    private List<Actividad> elige;
 
     public List<Inscripcion> getInscripcion() {
-        return inscrito_en;
+        return esta_inscrito_en;
     }
 
-    public void setInscripcion(List<Inscripcion> inscrito_en) {
-        this.inscrito_en = inscrito_en;
+    public void setInscripcion(List<Inscripcion> esta_inscrito_en) {
+        this.esta_inscrito_en = esta_inscrito_en;
     }
     
     public Long getId() {
