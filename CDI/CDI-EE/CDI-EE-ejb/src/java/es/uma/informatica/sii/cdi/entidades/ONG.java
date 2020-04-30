@@ -15,6 +15,20 @@ public class ONG extends Usuario {
     
     private String ubicacion;
     private String web;
+    private String nombre;
+    private String email;
+    private int telefono;
+    private String username;
+    private String password;
+    
+    public ONG(){
+        
+    }
+    public ONG(String ubicacion,String web,String nombre,String email,int tlf, String username,String psw){
+        super(nombre,email,tlf,username,psw);
+        this.ubicacion=ubicacion;
+        this.web=web;
+    }
     @OneToMany(mappedBy = "es_gestionada_por")
     private List<Actividad> gestiona;
     

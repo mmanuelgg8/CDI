@@ -30,6 +30,17 @@ public class Usuario implements Serializable {
     private String username;
     private String password;
     
+     public Usuario(){
+        
+    }
+    public Usuario(String nombre,String email,int tlf, String username,String password){
+        this.nombre=nombre;
+        this.telefono=tlf;
+        this.email=email;
+        this.username=username;
+        this.password=password;
+          
+    }
     @OneToMany(mappedBy = "pertenece_a")
     private List<Inscripcion> esta_inscrito_en;
     

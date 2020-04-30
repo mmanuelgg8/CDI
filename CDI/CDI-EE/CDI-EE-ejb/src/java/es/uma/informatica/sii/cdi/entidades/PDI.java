@@ -22,9 +22,31 @@ public class PDI extends Usuario implements Serializable {
     private String apellido2;
     private String dni;
     private String titulacion;
-    private String deparatmento;
+    private String departamento;
     private int despacho;
     private boolean rol_gestor;
+    private String nombre;
+    private String email;
+    private int telefono;
+    private String username;
+    private String password;
+    
+    
+    public PDI(){
+        
+    }
+    public PDI(String ap1,String ap2,String dni,String titulacion,String dpto,int despacho,String nombre,String email,int tlf, String username,String psw,boolean rol){
+        super(nombre,email,tlf,username,psw);
+        this.apellido1=ap1;
+        this.apellido2=ap2;
+        this.dni=dni;
+        this.titulacion=titulacion;
+        this.departamento=dpto;
+        this.despacho=despacho;
+        this.rol_gestor=rol;
+        
+        
+    }
     
     @OneToMany(mappedBy = "es_gestionada")
     private List<Actividad> gestiona;
@@ -78,12 +100,12 @@ public class PDI extends Usuario implements Serializable {
         this.titulacion = titulacion;
     }
 
-    public String getDeparatmento() {
-        return deparatmento;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setDeparatmento(String deparatmento) {
-        this.deparatmento = deparatmento;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public int getDespacho() {
