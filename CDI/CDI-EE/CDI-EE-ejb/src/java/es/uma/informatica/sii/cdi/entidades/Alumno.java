@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Alumno extends Usuario implements Serializable  {
- 
+   //ewfn
     private String apellido1;
     private String apellido2;
     private String grado;
