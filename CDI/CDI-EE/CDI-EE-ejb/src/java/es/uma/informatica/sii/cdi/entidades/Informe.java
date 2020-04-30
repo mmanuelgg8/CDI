@@ -1,4 +1,4 @@
-package es.entidades;
+package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
 import java.util.Date;

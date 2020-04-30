@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.entidades;
+package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
