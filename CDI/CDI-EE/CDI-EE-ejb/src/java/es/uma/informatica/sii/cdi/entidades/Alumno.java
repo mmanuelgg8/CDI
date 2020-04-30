@@ -16,13 +16,30 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Alumno extends Usuario implements Serializable  {
- 
     private String apellido1;
     private String apellido2;
     private String grado;
     private String curso;
     private int pref_Cuatrimestre;
     private String dni;
+    private String nombre;
+    private String email;
+    private int telefono;
+    private String username;
+    private String password;
+    
+    public Alumno(){
+        
+    }
+    public Alumno(String ap1,String ap2,String grado,String curso,int cuat,String dni,String nombre,String email,int tlf, String username,String psw){
+        super(nombre,email,tlf,username,psw);
+        this.apellido1=ap1;
+        this.apellido2=ap2;
+        this.grado=grado;
+        this.curso=curso;
+        this.pref_Cuatrimestre=cuat;
+        this.dni=dni;
+    }
     @ManyToMany(mappedBy="tiene_a")
     private List<Asignatura> matriculado_en;
 
