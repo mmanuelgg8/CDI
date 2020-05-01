@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -24,11 +25,16 @@ public class ONG extends Usuario {
     public ONG(){
         
     }
+    public ONG(String username,String psw){
+        super(username,psw);
+    }
+    
     public ONG(String ubicacion,String web,String nombre,String email,int tlf, String username,String psw){
         super(nombre,email,tlf,username,psw);
         this.ubicacion=ubicacion;
         this.web=web;
     }
+    
     @OneToMany(mappedBy = "es_gestionada_por")
     private List<Actividad> gestiona;
     
@@ -48,28 +54,37 @@ public class ONG extends Usuario {
         this.web = web;
     }
 
-     @Override
+    @Override
     public int hashCode() {
-        return id.hashCode();
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.username);
+        return hash;
     }
 
     @Override
-    public boolean equals(Object o) {
-    	// TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(o instanceof ONG)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        ONG other = (ONG) o;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ONG other = (ONG) obj;
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
-        return "cdi.ONG[ id=" + id + " ]";
+        return "ONG{" + "web=" + web + ", nombre=" + nombre + '}';
     }
+
+
    
     
 }

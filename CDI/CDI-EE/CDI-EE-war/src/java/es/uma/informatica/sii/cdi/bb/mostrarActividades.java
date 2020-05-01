@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.uma.informatica.sii.cdi.backingbeans;
+package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import java.util.ArrayList;

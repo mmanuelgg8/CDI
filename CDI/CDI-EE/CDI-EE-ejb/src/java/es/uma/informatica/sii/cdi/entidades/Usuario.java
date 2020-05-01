@@ -8,6 +8,7 @@ package es.uma.informatica.sii.cdi.entidades;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -19,7 +20,8 @@ import javax.persistence.Temporal;
 @Entity
 public class Usuario implements Serializable {
     @Id
-    Long id;
+    private String username;
+    private String password;
     private String nombre;
     private String email;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -27,20 +29,25 @@ public class Usuario implements Serializable {
     private String ambito_prefer;
     private String trabajo_prefer;
     private int telefono;
-    private String username;
-    private String password;
     
-     public Usuario(){
+    
+    public Usuario(){
         
     }
+    public Usuario(String username,String password){
+        this.username=username;
+        this.password=password;
+          
+    }
+    
     public Usuario(String nombre,String email,int tlf, String username,String password){
         this.nombre=nombre;
         this.telefono=tlf;
         this.email=email;
         this.username=username;
         this.password=password;
-          
     }
+        
     @OneToMany(mappedBy = "pertenece_a")
     private List<Inscripcion> esta_inscrito_en;
     
@@ -53,14 +60,6 @@ public class Usuario implements Serializable {
 
     public void setInscripcion(List<Inscripcion> esta_inscrito_en) {
         this.esta_inscrito_en = esta_inscrito_en;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(long ID) {
-        this.id = ID;
     }
 
     public String getNombre() {
@@ -126,5 +125,55 @@ public class Usuario implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Inscripcion> getEsta_inscrito_en() {
+        return esta_inscrito_en;
+    }
+
+    public void setEsta_inscrito_en(List<Inscripcion> esta_inscrito_en) {
+        this.esta_inscrito_en = esta_inscrito_en;
+    }
+
+    public List<Actividad> getElige() {
+        return elige;
+    }
+
+    public void setElige(List<Actividad> elige) {
+        this.elige = elige;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.username);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nombre=" + nombre + ", email=" + email + '}';
+    }
+
+    
+
+    
     
 }

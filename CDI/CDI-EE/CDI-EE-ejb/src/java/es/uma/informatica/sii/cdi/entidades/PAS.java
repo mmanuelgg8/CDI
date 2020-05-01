@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 
 
@@ -16,7 +17,7 @@ import javax.persistence.Entity;
 @Entity
 public class PAS extends Usuario implements Serializable {
     
-     private String apellido1;
+    private String apellido1;
     private String apellido2;
     private String dni;
     private String puesto;
@@ -28,6 +29,10 @@ public class PAS extends Usuario implements Serializable {
     
     public PAS(){
         
+    }
+    
+    public PAS(String username,String psw){
+        super(username,psw);
     }
     
     public PAS(String ap1,String ap2,String dni,String puesto,String nombre,String email,int tlf, String username,String psw){
@@ -72,19 +77,24 @@ public class PAS extends Usuario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.username);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PAS)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        PAS other = (PAS) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PAS other = (PAS) obj;
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return true;
@@ -92,7 +102,9 @@ public class PAS extends Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "cdi.PAS[ id=" + id + " ]";
+        return "PAS{" + "apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", nombre=" + nombre + '}';
     }
+
+
     
 }
