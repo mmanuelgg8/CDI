@@ -38,6 +38,21 @@ public class Actividad implements Serializable {
     private String Zona;
     private String horario;
     private String motivo;
+    
+    public Actividad(){
+        
+    }
+    public Actividad(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String motivo){
+        this.nombre=nombre;
+        this.requisitos=requisitos;
+        this.fecha=fecha;
+        this.estado=estado;
+        this.tipo=tipo;
+        this.Zona=zona;
+        this.horario=horario;
+        this.motivo=motivo;
+        
+    }
 
     @ManyToOne
     private Proyecto pertenece_a;

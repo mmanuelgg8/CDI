@@ -41,7 +41,12 @@ public class ControlAutorizacion {
             return "Home.xhtml";
         }
     }
-    
+    public String actividades(){
+        return "actividades.xhtml";
+    }
+    public String proyectos(){
+        return "proyectos.xhtml";
+    }
     public String logout()
     {
         // Destruye la sesión (y con ello, el ámbito de este bean)
