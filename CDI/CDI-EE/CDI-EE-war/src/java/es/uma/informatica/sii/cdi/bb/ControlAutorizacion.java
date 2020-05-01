@@ -7,6 +7,7 @@ package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -19,6 +20,38 @@ import javax.inject.Named;
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
     private Usuario usuario;
+    private List<Informe> informes;
+    private List<Actividad> actividades;
+    private List<Proyecto> proyectos;
+
+    public List<Informe> getInformes() {
+        return informes;
+    }
+
+    public void setInformes(List<Informe> informes) {
+        this.informes = informes;
+    }
+    
+    
+    
+    public List<Proyecto> getProyectos() {
+        return proyectos;
+    }
+
+    public void setProyectos(List<Proyecto> proyectos) {
+        this.proyectos = proyectos;
+    }
+    
+    
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
+    
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -27,7 +60,8 @@ public class ControlAutorizacion implements Serializable {
     public Usuario getUsuario() {
         return usuario;
     }
-
+    
+    
     public String home() {
         if(usuario instanceof PDI ){
             PDI aux = (PDI) usuario;
@@ -40,11 +74,18 @@ public class ControlAutorizacion implements Serializable {
             return "home.xhtml";
         }
     }
+    
     public String actividades(){
         return "actividades.xhtml";
     }
     public String proyectos(){
         return "proyectos.xhtml";
+    }
+    public String informes(){
+        return "informes.xhtml";
+    }
+    public String inscripciones(){
+        return "inscripciones.xhtml";
     }
     public String logout()
     {
