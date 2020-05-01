@@ -20,6 +20,7 @@ import javax.persistence.Temporal;
 @Entity
 public class Usuario implements Serializable {
     @Id
+     Long id;
     private String username;
     private String password;
     private String nombre;
@@ -29,7 +30,7 @@ public class Usuario implements Serializable {
     private String ambito_prefer;
     private String trabajo_prefer;
     private int telefono;
-    
+    private String cadenaValidacion;
     
     public Usuario(){
         
@@ -170,6 +171,14 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "Usuario{" + "nombre=" + nombre + ", email=" + email + '}';
+    }
+
+    public void setCadenaValidacion(String generarCadenaAleatoria) {
+        this.cadenaValidacion = generarCadenaAleatoria;
+    }
+
+    public String getCadenaValidacion() {
+        return cadenaValidacion;
     }
 
     

@@ -28,7 +28,7 @@
     <h:body class="bg-gradient-primary">
         <h:panelGroup layout="block" id="wrapper">
             <c:choose>
-                <c:when test="#{controlAutorizacion.usuario == null}">
+                <c:when test="#{empty controlAutorizacion.usuario}">
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
