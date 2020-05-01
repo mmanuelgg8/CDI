@@ -1,6 +1,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -20,6 +21,19 @@ public class Proyecto implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     private boolean estado;
+    private List<Actividad> actividades;
+    
+    public Proyecto(){
+        
+    }
+    public Proyecto(String nombre,String requisitos,Date fecha,boolean estado){
+        this.nombre=nombre;
+        this.requisitos=requisitos;
+        this.fecha=fecha;
+        this.estado=estado;
+        actividades=new ArrayList<>();
+        
+    }
   
     @OneToMany(mappedBy = "pertenece_a")
     private List<Actividad> conformado_por;
@@ -75,8 +89,20 @@ public class Proyecto implements Serializable {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-
+    public List<Actividad> getListaActividades(){
+        return actividades;
+    }
+    public void setListaActividades(List<Actividad> actividades){
+        this.actividades=actividades;
+    }
+    public void addActividades(Long id){
+        for(Actividad a: actividades){
+            if(a.getId()==id){
+                actividades.add(a);
+            }
+        }
+        
+    }
 
     @Override
     public boolean equals(Object o) {
