@@ -25,10 +25,10 @@ public class Login {
     private String usuario;
     private String contrasenia;
     private List <Usuario> usuarios;
-    private List<ONG>ongs;
-    private List<Alumno>alumnos;
-    private List<PAS>lpas;
-    private List<PDI>lpdi;
+    private List<ONG> ongs;
+    private List<Alumno> alumnos;
+    private List<PAS> lpas;
+    private List<PDI> lpdi;
 
     public String getUsuario() {
         return usuario;
@@ -92,7 +92,7 @@ public class Login {
      * Creates a new instance of Login
      */
     public Login() {
-        usuarios = new ArrayList<Usuario>();
+        usuarios = new ArrayList<>();
         Usuario naruto= new Usuario("Naruto","naruto@gmail.com",667667676,"narutito","pswnaruto");
         PAS pas=new PAS("García", "Pérez","265463788x","conserje","Juan","juan@gmail.com",667667677,"juanillo","pswpas");
         PDI pdi=new PDI("Sánchez","Romero","250367489z","ingeriero informatico","lenguaje de la computacion",205,"Carlos","carlos@gmail.com",666382922,"carlitos","pswpdi",false);
