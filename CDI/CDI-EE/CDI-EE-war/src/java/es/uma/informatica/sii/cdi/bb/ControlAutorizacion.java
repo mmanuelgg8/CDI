@@ -68,7 +68,7 @@ public class ControlAutorizacion implements Serializable {
             if(aux.isRol_gestor()){
                 return "homeGestor.xhtml";
             }else{
-                return "home.xtml";
+                return "home.xhtml";
             }
         }else{
             return "home.xhtml";
