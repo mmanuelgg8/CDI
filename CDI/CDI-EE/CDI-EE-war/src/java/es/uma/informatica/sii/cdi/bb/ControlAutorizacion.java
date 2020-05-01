@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.uma.informatica.sii.cdi.backingbeans;
+package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  *
  * @author nicol
  */
-public class ControlAutorizacion {
+@Named(value = "controlAutorizacion")
+@SessionScoped
+public class ControlAutorizacion implements Serializable {
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
@@ -24,21 +29,15 @@ public class ControlAutorizacion {
     }
 
     public String home() {
-        // Implementar el método
-        // Devuelve la página Home dependiendo del rol del usuario
-        // Si no hay usuario debe devolver la página de login
-        // Si el usuario es el administrador debe devolver la página admin.xhtml
-        // Si el usuario es un usuario normal debe devolver la página normal.xhtml
-       
         if(usuario instanceof PDI ){
             PDI aux = (PDI) usuario;
             if(aux.isRol_gestor()){
-                return "HomeGestor.xhtml";
+                return "homeGestor.xhtml";
             }else{
-                return "Home.xtml";
+                return "home.xtml";
             }
         }else{
-            return "Home.xhtml";
+            return "home.xhtml";
         }
     }
     public String actividades(){

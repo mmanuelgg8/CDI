@@ -7,6 +7,7 @@ package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
@@ -31,6 +32,10 @@ public class Alumno extends Usuario implements Serializable  {
     public Alumno(){
         
     }
+    public Alumno(String username,String psw){
+        super(username,psw);
+    }
+    
     public Alumno(String ap1,String ap2,String grado,String curso,int cuat,String dni,String nombre,String email,int tlf, String username,String psw){
         super(nombre,email,tlf,username,psw);
         this.apellido1=ap1;
@@ -40,6 +45,7 @@ public class Alumno extends Usuario implements Serializable  {
         this.pref_Cuatrimestre=cuat;
         this.dni=dni;
     }
+    
     @ManyToMany(mappedBy="tiene_a")
     private List<Asignatura> matriculado_en;
 
@@ -100,20 +106,27 @@ public class Alumno extends Usuario implements Serializable  {
     public void setPrefer_Cuatrimestre(int pref_Cuatrimestre) {
         this.pref_Cuatrimestre = pref_Cuatrimestre;
     }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.username);
         return hash;
     }
+
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Alumno)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Alumno other = (Alumno) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Alumno other = (Alumno) obj;
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return true;
@@ -121,7 +134,9 @@ public class Alumno extends Usuario implements Serializable  {
 
     @Override
     public String toString() {
-        return "cdi.Alumno[ id=" + id + " ]";
+        return "Alumno{" + "apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", nombre=" + nombre + '}';
     }
+
+    
     
 }
