@@ -31,6 +31,14 @@ public class Inscripcion implements Serializable {
     private boolean estado;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
+    
+    public Inscripcion(){
+        
+    }
+    public Inscripcion(Date fecha,boolean estado){
+        this.fecha=fecha;
+        this.estado=estado;
+    }
     @OneToMany
     private List<Informe> contiene;
     @ManyToOne
