@@ -45,7 +45,6 @@ public class Login {
         usuarios.add(pas);
         usuarios.add(pdi);
         usuarios.add(gestor);
-        
     }
     
     public String getUsuario() {
