@@ -23,7 +23,7 @@ public class CDIImpl implements CDI {
 
     private static final int TAM_CADENA_VALIDACION = 20;
 
-    //@PersistenceContext(unitName = "CDIPU")
+    @PersistenceContext(unitName = "CDIPU")
     private EntityManager em;
 
     @Override
@@ -40,7 +40,7 @@ public class CDIImpl implements CDI {
 
         u.setCadenaValidacion(generarCadenaAleatoria());
         em.persist(u);
-        String url_validacion = "http://localhost:8080/CDIEE-war/faces/validarCuenta.xhtml?username="
+        String url_validacion = "http://localhost:1527/CDIEE-war/faces/validarCuenta.xhtml?username="
                 + u.getUsername() + "&codigoValidacion=" + u.getCadenaValidacion();
 
         System.out.println(url_validacion);
