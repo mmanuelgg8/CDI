@@ -21,7 +21,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
  *
  * @author elena y julio
  */
-@Named(value = "crudActividad")
+@Named(value = "crudActividades")
 @RequestScoped
 public class CRUDactividades {
     

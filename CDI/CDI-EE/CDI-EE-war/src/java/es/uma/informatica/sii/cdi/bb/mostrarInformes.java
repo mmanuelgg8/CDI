@@ -17,7 +17,7 @@ import javax.inject.Named;
  *
  * @author elena y julio
  */
-@Named(value = "mostrarActividades")
+@Named(value = "mostrarInformes")
 @RequestScoped
 public class mostrarInformes {
     

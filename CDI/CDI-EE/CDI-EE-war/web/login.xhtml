@@ -28,7 +28,7 @@
     <h:body class="bg-gradient-primary">
         <h:panelGroup layout="block" id="wrapper">
             <c:choose>
-                <c:when test="#{controlAutorizacion.usuario == null}">
+                <c:when test="#{empty controlAutorizacion.usuario}">
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
@@ -53,7 +53,21 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Debe salir de la aplicación si quiere entrar como otro usuario</h1>
+                            </div>
+                            <h:form id="login" class="user">
+                                <div class="form-group">
+                                    <h:commandButton id="controlAutorizacion" value="Cerrar Sesión" action="#{controlAutorizacion.logout()}" class="btn btn-primary btn-user btn-block"/>
+                                    <a href="index.xhtml" class="btn btn-primary btn-user btn-block">
+                                        Volver a Inicio
+                                    </a>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
                 </c:otherwise>
             </c:choose>
         </h:panelGroup>
