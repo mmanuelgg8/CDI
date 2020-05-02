@@ -19,7 +19,6 @@ import javax.inject.Named;
  */
 @Named(value = "mostrarActividades")
 @RequestScoped
-
 public class mostrarActividades {
 
 
