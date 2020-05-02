@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    
+    <h:head>
+        <title><ui:insert name = "title"> Sin titulo</ui:insert></title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
+        <h:outputStylesheet name="css/sb-admin-2.css"/>
+        <h:outputStylesheet name="vendor/fontawesome-free/css/all.min.css"/>
+        <!-- Bootstrap core JavaScript-->
+        <h:outputScript name="vendor/jquery/jquery.min.js"/>
+        <h:outputScript name="vendor/bootstrap/js/bootstrap.bundle.min.js"/>
+        <!-- Core plugin JavaScript-->
+        <h:outputScript name="vendor/jquery-easing/jquery.easing.min.js"/>
+        <!-- Custom scripts for all pages-->
+        <h:outputScript name="js/sb-admin-2.min.js"/>
+    </h:head>
+    
+    <h:body id="page-top">
+        <h:panelGroup layout="block" id="wrapper">
+            <ui:include src="barra-lateral-proyectos.xhtml" />
+            <h:panelGroup id="content-wrapper" class="d-flex flex-column">
+                <h:panelGroup layout="block" id="content">
+                    <ui:include src="barra-superior-proyectos.xhtml"/> 
+                    <h:panelGroup layout="block" class="container-fluid"/>
+                        <h1><ui:insert name="title">Sin titulo</ui:insert></h1>
+                        <ui:insert name="content">Contenido principal</ui:insert>
+                </h:panelGroup>
+                <ui:include src="footer.xhtml"/>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+    
+</html>
