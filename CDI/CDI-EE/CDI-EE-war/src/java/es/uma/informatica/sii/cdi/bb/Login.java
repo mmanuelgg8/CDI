@@ -8,9 +8,7 @@ package es.uma.informatica.sii.cdi.bb;
 import es.uma.informatica.sii.cdi.entidades.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

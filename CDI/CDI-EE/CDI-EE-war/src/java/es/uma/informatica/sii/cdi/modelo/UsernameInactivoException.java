@@ -12,6 +12,7 @@ package es.uma.informatica.sii.cdi.modelo;
 public class UsernameInactivoException extends Throwable {
 
     public UsernameInactivoException() {
+        super.getMessage();
     }
     
 }

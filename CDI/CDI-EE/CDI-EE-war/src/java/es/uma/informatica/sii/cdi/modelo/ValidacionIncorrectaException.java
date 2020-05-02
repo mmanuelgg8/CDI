@@ -12,6 +12,7 @@ package es.uma.informatica.sii.cdi.modelo;
 public class ValidacionIncorrectaException extends Throwable {
 
     public ValidacionIncorrectaException() {
+        super.getMessage();
     }
     
 }
