@@ -16,11 +16,6 @@ public class ONG extends Usuario {
     
     private String ubicacion;
     private String web;
-    private String nombre;
-    private String email;
-    private int telefono;
-    private String username;
-    private String password;
     
     public ONG(){
         
