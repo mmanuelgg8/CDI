@@ -10,5 +10,12 @@ package es.uma.informatica.sii.cdi.modelo;
  * @author mmanu
  */
 class CDIException extends Exception {
+
+    @Override
+    public String getMessage() {
+        return super.getMessage(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
     
 }

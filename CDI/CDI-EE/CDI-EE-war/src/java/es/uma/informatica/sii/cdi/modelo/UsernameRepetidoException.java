@@ -12,6 +12,7 @@ package es.uma.informatica.sii.cdi.modelo;
 public class UsernameRepetidoException extends Throwable {
 
     public UsernameRepetidoException() {
+        super.getMessage();
     }
     
 }

@@ -12,6 +12,7 @@ package es.uma.informatica.sii.cdi.modelo;
 public class PasswordInvalidaException extends Throwable {
 
     public PasswordInvalidaException() {
+        super.getMessage();
     }
     
 }
