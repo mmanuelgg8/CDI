@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
+import java.io.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,12 @@ public class Login {
     private String usuario;
     private String password;
     private List<Usuario> usuarios;
+    
+    
+    //variables para hacer el registro
+    private String email;
+    private String apellidos;
+    private String passwordrepeat;
 
     @Inject
     private ControlAutorizacion ctrl;
@@ -51,8 +58,40 @@ public class Login {
 
     }
 
+    public void aniadirusuario(){
+       //if(password.equals(passwordrepeat)){
+        System.out.println(usuario);
+        System.out.println(password);
+          usuarios.add(new Usuario(usuario,password));
+       //}
+    }
+     
     public String getUsuario() {
         return usuario;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getPasswordrepeat() {
+        return passwordrepeat;
+    }
+
+    public void setPasswordrepeat(String passwordrepeat) {
+        this.passwordrepeat = passwordrepeat;
     }
 
     public void setUsuario(String usuario) {
