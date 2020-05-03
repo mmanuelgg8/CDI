@@ -21,9 +21,9 @@ import javax.persistence.Temporal;
 public class Usuario implements Serializable {
     @Id
      Long id;
-    private String username;
+    String username;
     private String password;
-    private String nombre;
+    String nombre;
     private String email;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha_prefer;
@@ -31,6 +31,7 @@ public class Usuario implements Serializable {
     private String trabajo_prefer;
     private int telefono;
     private String cadenaValidacion;
+    
     
     public Usuario(){
         
@@ -47,6 +48,7 @@ public class Usuario implements Serializable {
         this.email=email;
         this.username=username;
         this.password=password;
+        
     }
         
     @OneToMany(mappedBy = "pertenece_a")
@@ -142,7 +144,7 @@ public class Usuario implements Serializable {
     public void setElige(List<Actividad> elige) {
         this.elige = elige;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

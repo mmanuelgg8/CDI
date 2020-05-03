@@ -23,14 +23,8 @@ public class Alumno extends Usuario implements Serializable  {
     private String curso;
     private int pref_Cuatrimestre;
     private String dni;
-    private String nombre;
-    private String email;
-    private int telefono;
-    private String username;
-    private String password;
     
     public Alumno(){
-        
     }
     public Alumno(String username,String psw){
         super(username,psw);
@@ -106,6 +100,7 @@ public class Alumno extends Usuario implements Serializable  {
     public void setPrefer_Cuatrimestre(int pref_Cuatrimestre) {
         this.pref_Cuatrimestre = pref_Cuatrimestre;
     }
+
 
     @Override
     public int hashCode() {

@@ -26,13 +26,7 @@ public class PDI extends Usuario implements Serializable {
     private String departamento;
     private int despacho;
     private boolean rol_gestor;
-    private String nombre;
-    private String email;
-    private int telefono;
-    private String username;
-    private String password;
-    
-    
+ 
     public PDI(){
         
     }
@@ -151,8 +145,6 @@ public class PDI extends Usuario implements Serializable {
         this.administra = administra;
     }
     
-    
-
     @Override
     public int hashCode() {
         int hash = 7;

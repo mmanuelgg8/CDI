@@ -24,6 +24,19 @@ public class ControlAutorizacion implements Serializable {
     private List<Actividad> actividades;
     private List<Proyecto> proyectos;
 
+    public String getRol(){
+        if(usuario instanceof PDI){
+            return "PDI";
+        }else if(usuario instanceof PAS){
+            return "PAS";
+        }else if(usuario instanceof Alumno){
+            return "ALUMNO";
+        }else if(usuario instanceof ONG){
+            return "ONG";
+        }
+        return null;
+    }
+    
     public List<Informe> getInformes() {
         return informes;
     }
@@ -31,7 +44,6 @@ public class ControlAutorizacion implements Serializable {
     public void setInformes(List<Informe> informes) {
         this.informes = informes;
     }
-    
     
     
     public List<Proyecto> getProyectos() {
@@ -61,8 +73,9 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
     
-    
+
     public String home() {
+        /*
         if(usuario instanceof PDI ){
             PDI aux = (PDI) usuario;
             if(aux.isRol_gestor()){
@@ -73,8 +86,10 @@ public class ControlAutorizacion implements Serializable {
         }else{
             return "home.xhtml";
         }
+        */
+        return "index.xhtml";
     }
-    
+ 
     public String actividades(){
         return "actividades.xhtml";
     }

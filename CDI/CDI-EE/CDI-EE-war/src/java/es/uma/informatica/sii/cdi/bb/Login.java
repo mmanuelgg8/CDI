@@ -62,7 +62,7 @@ public class Login {
        //if(password.equals(passwordrepeat)){
         System.out.println(usuario);
         System.out.println(password);
-          usuarios.add(new Usuario(usuario,password));
+        usuarios.add(new Usuario(usuario,password));
        //}
     }
      

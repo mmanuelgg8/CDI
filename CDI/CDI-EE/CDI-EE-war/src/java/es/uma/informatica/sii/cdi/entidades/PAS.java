@@ -21,11 +21,6 @@ public class PAS extends Usuario implements Serializable {
     private String apellido2;
     private String dni;
     private String puesto;
-    private String nombre;
-    private String email;
-    private int telefono;
-    private String username;
-    private String password;
     
     public PAS(){
         
@@ -74,7 +69,7 @@ public class PAS extends Usuario implements Serializable {
     public void setPuesto(String puesto) {
         this.puesto = puesto;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
