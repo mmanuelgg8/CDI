@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+          
+    <ui:composition template="templates/layout.xhtml">
+        <ui:define name="title">Edición Perfil</ui:define>
+        <ui:define name="content">
+            <div style="background-color:whitesmoke; margin-left: 30%; 
+                       margin-right: 20%; 
+                       opacity: 1; 
+                       outline-style: none; 
+                       outline-color: gray; 
+                       outline-width: 0px; 
+                       margin-top: 10%; ">
+                <h:form id="editarPerfil">
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+
+                
+                        <tr>
+                            <td>Nombre: </td>
+                            <td><h:outputText value="#{EditarPerfil.us.nombre}"/><h:inputText value="#{EditarPerfil.nombre}"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Username: </td>
+                            <td><h:inputText value="#{EditarPerfil.username}"/></td>
+                        </tr>
+                        
+                         <tr>
+                            <td>Password: </td>
+                            <td><h:inputText value="#{EditarPerfil.password}"/></td>
+                        </tr>
+                        
+                         <tr>
+                            <td>Email: </td>
+                            <td><h:inputText value="#{EditarPerfil.proyecto}"/></td>
+                        </tr>
+                        
+                         <tr>
+                            <td>Teléfono: </td>
+                            <td><h:inputText value="#{EditarPerfil.teléfono}"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="7">
+                                <h:commandButton value="Guardar cambios" action="#{EditarPerfil.guardarCambios()}" style="background-color: lightblue"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+                </div>
+            
+        </ui:define>
+        
+    </ui:composition>    
+    
+    
+    
+</html>
