@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+
+    <ui:composition template="templates/layout.xhtml">
+        <ui:define name="title">Actividades</ui:define>
+        <ui:define name="content"> 
+            <div class="card-body">
+                <h:dataTable value = "#{mostrarActividades.actividades}" var = "actividades"
+                             styleClass = "employeeTable"
+                             headerClass = "employeeTableHeader"
+                             rowClasses = "employeeTableOddRow,employeeTableEvenRow"
+                             >
+
+                    <h:column>    				
+                        <f:facet name = "header">Nombre</f:facet>    				
+                            #{actividades.nombre}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Información</f:facet>
+                        <!-- #{employee.department}-->
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Requisitos</f:facet>
+                            #{actividades.requisitos}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">ONG</f:facet>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Ámbitos</f:facet>
+                            #{actividades.fecha}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Fecha</f:facet>
+                            #{actividades.fecha}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Horario</f:facet>
+                            #{actividades.horario}
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+
+        </ui:define>
+
+    </ui:composition>    
+
+
+
+</html>
