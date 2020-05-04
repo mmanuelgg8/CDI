@@ -8,24 +8,32 @@ and open the template in the editor.
     Author     : mmanu
 */
 
-.employeeTable {   
-   border-collapse:collapse;
-   border:1px solid #0000ff;
+.table {   
+    border-collapse:collapse;
+    border:2px solid #0000ff;
 }
 
-.employeeTableHeader {
-   text-align:center;
-   background:none repeat scroll 0 0 #B5B5B5;
-   border-bottom:1px solid #000000;  
-   padding:2px;
+.tableHeader {
+    text-align:center;
+    color: #0000ff;
+    background:none repeat scroll 0 0 #b5b5b5;
+    border-bottom:4px solid #0000ff;  
+    padding:2px;
 }
 
-.employeeTableOddRow {
-   text-align:center;
-   background:none repeat scroll 0 0 #FFFFFFF;	
+.tableOddRow {
+    color: #000;
+    text-align:center;
+    background:none repeat scroll 0 0 #ffffff;	
 }
 
-.employeeTableEvenRow {
-   text-align:center;
-   background:none repeat scroll 0 0 #D3D3D3;
+.tableEvenRow {
+    color: #000;
+    text-align:center;
+    background:none repeat scroll 0 0 #d3d3d3;
+}
+
+.tableColumn{
+    column-rule-color: #0000ff;
+
 }

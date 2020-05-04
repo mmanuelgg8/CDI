@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
+import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,8 +28,9 @@ public class mostrarProyectos {
     public mostrarProyectos() {
         proyectos= new ArrayList<>();
         actividades=new ArrayList<>();
-        Actividad a1 = new Actividad("Actividad1","conocimientos sobre vacunas",(new Date(03/06/2020)),true,1,"Marbella","actividad de mañana","vacunar a los niños en centros escolares");
-        Actividad a2 = new Actividad("Actividad2"," no hace falta ningún conocimiento para realizar la actividad",(new Date(06/02/2020)),true,0,"Madrid","actividad de tarde","ayudar a los necesitados ");
+        ONG ong = new ONG("Málaga","www.ong-malaga.es","ong-malaga","malaga@ong.es",777777771,"mlgong","mlgong");
+        Actividad a1 = new Actividad("Actividad1","conocimientos sobre vacunas",(new Date(03/06/2020)),true,1,"Marbella","actividad de mañana","vacunar a los niños en centros escolares",ong);
+        Actividad a2 = new Actividad("Actividad2"," no hace falta ningún conocimiento para realizar la actividad",(new Date(06/02/2020)),true,0,"Madrid","actividad de tarde","ayudar a los necesitados ",ong);
         actividades.add(a1);
         actividades.add(a2);
         Proyecto p1 = new Proyecto("Proyecto1","conocimientos básicos de cuidados intensivos",new Date(2020,06,05),true);

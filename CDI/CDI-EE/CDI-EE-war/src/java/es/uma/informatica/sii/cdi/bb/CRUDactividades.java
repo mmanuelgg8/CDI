@@ -72,7 +72,7 @@ public class CRUDactividades {
                  if(a1.getId()==id){
                     a1.setFecha(a.getFecha());
                     a1.setHorario(a.getHorario());
-                    a1.setMotivo(a.getMotivo());
+                    a1.setInformacion(a.getInformacion());
                     a1.setNombre(a.getNombre());
                     a1.setRequisitos(a.getRequisitos());
                     a1.setTipo(a.getTipo());

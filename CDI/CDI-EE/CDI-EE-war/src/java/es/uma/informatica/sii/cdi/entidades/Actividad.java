@@ -37,12 +37,13 @@ public class Actividad implements Serializable {
     private int tipo;
     private String Zona;
     private String horario;
-    private String motivo;
+    private String informacion;
     
     public Actividad(){
         
     }
-    public Actividad(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String motivo){
+
+    public Actividad(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String informacion,ONG ong){
         this.nombre=nombre;
         this.requisitos=requisitos;
         this.fecha=fecha;
@@ -50,7 +51,8 @@ public class Actividad implements Serializable {
         this.tipo=tipo;
         this.Zona=zona;
         this.horario=horario;
-        this.motivo=motivo;
+        this.informacion=informacion;
+        this.es_gestionada_por=ong;
         
     }
 
@@ -72,7 +74,11 @@ public class Actividad implements Serializable {
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
     }
-
+    
+    public ONG getONG(){
+        return es_gestionada_por;
+    }
+    
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
@@ -136,12 +142,12 @@ public class Actividad implements Serializable {
         this.horario = horario;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public String getInformacion() {
+        return informacion;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
     
     public Long getId() {
