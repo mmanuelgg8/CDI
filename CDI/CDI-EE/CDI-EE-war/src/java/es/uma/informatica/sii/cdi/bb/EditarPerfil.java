@@ -8,62 +8,71 @@ package es.uma.informatica.sii.cdi.bb;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.Temporal;
 
 /**
  *
  * @author Andres
  */
+@Named(value = "editarPerfil")
+@RequestScoped
 public class EditarPerfil {
-    private Usuario userpriv;
-    
+    private Usuario us;
+    private String email;
+
     private String username;
     private String password;
     private String nombre;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha_prefer;
-    private String ambito_prefer;
-    private String trabajo_prefer;
     private int telefono;
-    private List<Usuario> usuariosawa;
+    
+    private List<Usuario> usuarios;
     @Inject
     private ControlAutorizacion ctrl;
     
     public EditarPerfil(){
-        usuariosawa=new ArrayList<>();
-        
+        usuarios=new ArrayList<>();
+        nombre = "Luis Fonsi";
+        email = "luis@uma.es";
+        username = "luis";
+        telefono = 1234;
         Usuario u1 = new Usuario("awa","awa");
         Usuario u2 = new Usuario("awaa","awa");
         Usuario u3 = new Usuario("awaaa","awa");
-        usuariosawa.add(u1);
-        usuariosawa.add(u2);
-        usuariosawa.add(u3);
+        u1.setEmail("naruto@love.sasuke");
+        u1.setNombre("naruto");
+        u1.setTelefono(69);
+        us=u1;
+        usuarios.add(u1);
+        usuarios.add(u2);
+        usuarios.add(u3);
        
     }
     
-    private void guardarcambios(){
-        int pos=usuariosawa.indexOf(userpriv);
-        Usuario auxxaaa=usuariosawa.get(pos);
-        auxxaaa.setFecha_prefer(fecha_prefer);
-        auxxaaa.setTrabajo_prefer(trabajo_prefer);
-        auxxaaa.setUsername(username);
-        auxxaaa.setPassword(password);
-        auxxaaa.setNombre(nombre);
-        auxxaaa.setTelefono(telefono);
-        auxxaaa.setAmbito_prefer(ambito_prefer);
-        usuariosawa.add(pos,auxxaaa);
+    private void guardarCambios(){
+        int pos=usuarios.indexOf(us);
+        Usuario u=usuarios.get(pos);
+        u.setEmail(email);
+        u.setUsername(username);
+        u.setPassword(password);
+        u.setNombre(nombre);
+        u.setTelefono(telefono);
+        usuarios.add(pos,u);
+        ctrl.home();
     }
     
     
 
     public Usuario getUserpriv() {
-        return userpriv;
+        return us;
     }
 
     public void setUserpriv(Usuario userpriv) {
-        this.userpriv = userpriv;
+        this.us = userpriv;
     }
 
     public String getUsername() {
@@ -89,31 +98,7 @@ public class EditarPerfil {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public Date getFecha_prefer() {
-        return fecha_prefer;
-    }
-
-    public void setFecha_prefer(Date fecha_prefer) {
-        this.fecha_prefer = fecha_prefer;
-    }
-
-    public String getAmbito_prefer() {
-        return ambito_prefer;
-    }
-
-    public void setAmbito_prefer(String ambito_prefer) {
-        this.ambito_prefer = ambito_prefer;
-    }
-
-    public String getTrabajo_prefer() {
-        return trabajo_prefer;
-    }
-
-    public void setTrabajo_prefer(String trabajo_prefer) {
-        this.trabajo_prefer = trabajo_prefer;
-    }
-
+    
     public int getTelefono() {
         return telefono;
     }
@@ -122,7 +107,21 @@ public class EditarPerfil {
         this.telefono = telefono;
     }
     
-   
+    public Usuario getUs() {
+        return us;
+    }
+
+    public void setUs(Usuario us) {
+        this.us = us;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     
     

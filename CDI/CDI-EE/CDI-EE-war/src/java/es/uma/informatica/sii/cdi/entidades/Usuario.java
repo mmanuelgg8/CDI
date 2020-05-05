@@ -26,9 +26,6 @@ public class Usuario implements Serializable {
     String nombre;
     private String email;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha_prefer;
-    private String ambito_prefer;
-    private String trabajo_prefer;
     private int telefono;
     private String cadenaValidacion;
     
@@ -79,30 +76,6 @@ public class Usuario implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Date getFecha_prefer() {
-        return fecha_prefer;
-    }
-
-    public void setFecha_prefer(Date fecha_prefer) {
-        this.fecha_prefer = fecha_prefer;
-    }
-
-    public String getAmbito_prefer() {
-        return ambito_prefer;
-    }
-
-    public void setAmbito_prefer(String ambito_prefer) {
-        this.ambito_prefer = ambito_prefer;
-    }
-
-    public String getTrabajo_prefer() {
-        return trabajo_prefer;
-    }
-
-    public void setTrabajo_prefer(String trabajo_prefer) {
-        this.trabajo_prefer = trabajo_prefer;
     }
 
     public int getTelefono() {
