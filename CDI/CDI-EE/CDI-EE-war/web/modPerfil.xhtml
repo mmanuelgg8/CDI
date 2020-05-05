@@ -3,6 +3,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       >
           
     <ui:composition template="templates/layout.xhtml">
@@ -21,27 +22,27 @@
                 
                         <tr>
                             <td>Nombre: </td>
-                            <td><h:outputText value="#{EditarPerfil.us.nombre}"/><h:inputText value="#{EditarPerfil.nombre}"/></td>
+                            <td><h:inputText a:placeholder="#{editarPerfil.nombre}" value="#{editarPerfil.nombre}" id="name" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td>Username: </td>
-                            <td><h:inputText value="#{EditarPerfil.username}"/></td>
+                            <td><h:inputText a:placeholder="#{editarPerfil.username}" value="#{editarPerfil.username}" id="username" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Password: </td>
-                            <td><h:inputText value="#{EditarPerfil.password}"/></td>
+                            <td><h:inputText a:placeholder="*******" value="#{editarPerfil.password}" id="password" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Email: </td>
-                            <td><h:inputText value="#{EditarPerfil.proyecto}"/></td>
+                            <td><h:inputText a:placeholder="#{editarPerfil.email}" value="#{editarPerfil.email}" id="email" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Teléfono: </td>
-                            <td><h:inputText value="#{EditarPerfil.teléfono}"/></td>
+                            <td><h:inputText a:placeholder="#{editarPerfil.telefono}" value="#{editarPerfil.telefono}" id="telefono" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>

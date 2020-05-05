@@ -10,16 +10,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.Temporal;
 
 /**
  *
  * @author Andres
  */
+@Named(value = "editarPerfil")
+@RequestScoped
 public class EditarPerfil {
     private Usuario us;
     private String email;
+
     private String username;
     private String password;
     private String nombre;
@@ -31,8 +36,10 @@ public class EditarPerfil {
     
     public EditarPerfil(){
         usuarios=new ArrayList<>();
-        us.setNombre("naruto");
-  
+        nombre = "Luis Fonsi";
+        email = "luis@uma.es";
+        username = "luis";
+        telefono = 1234;
         Usuario u1 = new Usuario("awa","awa");
         Usuario u2 = new Usuario("awaa","awa");
         Usuario u3 = new Usuario("awaaa","awa");
@@ -100,7 +107,21 @@ public class EditarPerfil {
         this.telefono = telefono;
     }
     
-   
+    public Usuario getUs() {
+        return us;
+    }
+
+    public void setUs(Usuario us) {
+        this.us = us;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     
     
