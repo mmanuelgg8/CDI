@@ -9,7 +9,9 @@ import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,9 +26,25 @@ public class mostrarActividades {
 
 
     private List<Actividad> actividades;
+    private List<Actividad> filtro;
+    private List<String> nombresFiltro;
+    
 
     public List<Actividad> getActividades() {
-        return actividades;
+        
+        Set<Actividad> set = new HashSet<>();
+        nombresFiltro = new ArrayList<>();
+        nombresFiltro.add("Actividad1");
+
+        for(Actividad a : actividades){
+            for(String s : nombresFiltro){
+                if(a.getNombre().equals(s)){
+                    set.add(a);
+                }
+            }
+        }
+        filtro = new ArrayList<>(set);
+        return filtro;
     }
 
     public void setActividades(List<Actividad> actividades) {
@@ -40,7 +58,6 @@ public class mostrarActividades {
     public void setCtrl(ControlAutorizacion ctrl) {
         this.ctrl = ctrl;
     }
-    
     
     
     @Inject
@@ -60,7 +77,7 @@ public class mostrarActividades {
         
        
     }
-
+ 
     public String lista_actividades(){  //
         
          return ctrl.actividades();

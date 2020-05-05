@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       >
 
-    <ui:composition template="templates/layout.xhtml">
+    <ui:composition template="templates/layout-actividades.xhtml">
         <ui:define name="title">Actividades</ui:define>
         <ui:define name="content"> 
             <div class="card-body">
@@ -17,8 +17,8 @@
                              border="5"
                              >
 
-                    <h:column class="tableColumn">    				
-                        <f:facet name = "header">Nombre</f:facet>    				
+                    <h:column class="tableColumn" >    				
+                        <f:facet name = "header">Nombre</f:facet>
                             #{actividades.nombre}
                     </h:column>
 
@@ -41,7 +41,7 @@
                     </h:column>
                     <h:column>
                         <f:facet name = "header">Fecha</f:facet>
-                            #{actividades.fecha}
+                            #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year}
                     </h:column>
                     <h:column>
                         <f:facet name = "header">Horario</f:facet>
