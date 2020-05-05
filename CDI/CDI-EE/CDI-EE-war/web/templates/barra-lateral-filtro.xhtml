@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" var="actividades" value="##{mostrarActividades.actividades}">
+
+        <!-- Sidebar - Brand -->
+        <a href="index.xhtml" class="sidebar-brand d-flex align-items-center justify-content-center">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">CDI</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0"/>
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Opciones
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Navegar</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Elige</h6>
+                    <a class="collapse-item" href="proyectos.xhtml">Proyectos</a>
+                    <a class="collapse-item" href="actividades.xhtml">Actividades</a>
+                    <div class="collapse-divider"></div>
+                </div>
+            </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0"/>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Filtro</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Horarios</h6>
+                    <a class="collapse-item" href="proyectos.xhtml">Proyectos</a>
+                    <a class="collapse-item" href="actividades.xhtml">Actividades</a>
+                    
+                    <div class="collapse-divider"></div>
+
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">ONGs</h6>
+                        <h:form>
+                            <h:selectBooleanCheckbox title="Prueba" />
+                            <input type="checkbox" name="Actividad1" value="ON" />
+                            
+                        </h:form>
+                        <a class="collapse-item" href="proyectos.xhtml">Proyectos</a>
+                        <a class="collapse-item" href="actividades.xhtml">Actividades</a>
+                        <div class="collapse-divider"></div>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Fechas</h6>
+                        <a class="collapse-item" href="proyectos.xhtml">Proyectos</a>
+                        <a class="collapse-item" href="actividades.xhtml">Actividades</a>
+                        <div class="collapse-divider"></div>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Ámbitos</h6>
+                        <a class="collapse-item" href="proyectos.xhtml">Proyectos</a>
+                        <a class="collapse-item" href="actividades.xhtml">Actividades</a>
+                        <div class="collapse-divider"></div>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Requisitos</h6>
+                        <a class="collapse-item" href="proyectos.xhtml">Proyectos</a>
+                        <a class="collapse-item" href="actividades.xhtml">Actividades</a>
+                        <div class="collapse-divider"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block"/>
+
+
+    </ul>
+</html>
