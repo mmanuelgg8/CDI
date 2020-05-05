@@ -6,11 +6,14 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
-import java.io.Console;
+import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -22,8 +25,8 @@ import javax.inject.Named;
  */
 
 @Named(value = "login")
-@RequestScoped
-public class Login {
+@SessionScoped
+public class Login implements Serializable{
 
     private String usuario;
     private String password;
@@ -58,12 +61,13 @@ public class Login {
 
     }
 
-    public void aniadirusuario(){
+    public String aniadirusuario(){
        //if(password.equals(passwordrepeat)){
         System.out.println(usuario);
         System.out.println(password);
-        usuarios.add(new Usuario(usuario,password));
+          usuarios.add(new Usuario(usuario,password));
        //}
+	   return "login.xhtml";
     }
      
     public String getUsuario() {
