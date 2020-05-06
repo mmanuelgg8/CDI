@@ -56,8 +56,15 @@
                                             <h:inputSecret value="#{login.passwordrepeat}" class="form-control form-control-user" id="exampleRepeatPassword" a:placeholder="Repetir Contraseña"/>
                                         </div>
                                     </div>
-                                    <h:commandButton id="login" action="#{login.aniadirusuario()}" class="btn btn-primary btn-user btn-block">
-                                        Registrar Cuenta
+                                    <div class="form-group">
+                                        <h:selectOneMenu class="form-control form-control-user" value="#{login.clase}">
+                                            <f:selectItem itemLabel="Alumno" itemValue="Alumno"/>
+                                            <f:selectItem itemLabel="PDI" itemValue="PDI"/>
+                                            <f:selectItem itemLabel="PAS" itemValue="PAS"/>
+                                            <f:selectItem itemLabel="ONG" itemValue="ONG"/> 
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:commandButton id="login" action="#{login.aniadirusuario()}" class="btn btn-primary btn-user btn-block" value="Registrar Cuenta">
                                     </h:commandButton>
                                     <a href="index.xhtml" class="btn btn-primary btn-user btn-block">
                                         Volver a Inicio

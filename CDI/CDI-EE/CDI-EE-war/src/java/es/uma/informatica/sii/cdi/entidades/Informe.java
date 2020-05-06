@@ -22,7 +22,7 @@ public class Informe implements Serializable {
     
     public Informe(Date fecha, boolean repor, String comentarios){
         this.fecha=fecha;
-        this.reportado=reportado;
+        this.reportado=repor;
         this.comentarios=comentarios;
     }
     

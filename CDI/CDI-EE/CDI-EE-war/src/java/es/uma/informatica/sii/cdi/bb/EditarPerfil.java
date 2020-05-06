@@ -30,12 +30,12 @@ public class EditarPerfil {
     private String nombre;
     private int telefono;
     
-    private List<Usuario> usuarios;
+    //private List<Usuario> usuarios;
     @Inject
     private ControlAutorizacion ctrl;
     
     public EditarPerfil(){
-        usuarios=new ArrayList<>();
+        /*usuarios=new ArrayList<>();
         nombre = "Luis Fonsi";
         email = "luis@uma.es";
         username = "luis";
@@ -49,20 +49,18 @@ public class EditarPerfil {
         us=u1;
         usuarios.add(u1);
         usuarios.add(u2);
-        usuarios.add(u3);
+        usuarios.add(u3);*/
        
     }
     
-    private void guardarCambios(){
-        int pos=usuarios.indexOf(us);
-        Usuario u=usuarios.get(pos);
+    public String guardarCambios(){
+        Usuario u=ctrl.getUsuario();
         u.setEmail(email);
         u.setUsername(username);
         u.setPassword(password);
         u.setNombre(nombre);
         u.setTelefono(telefono);
-        usuarios.add(pos,u);
-        ctrl.home();
+        return ctrl.home();
     }
     
     
