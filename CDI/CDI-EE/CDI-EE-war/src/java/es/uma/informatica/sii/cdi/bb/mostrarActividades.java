@@ -77,7 +77,7 @@ public class mostrarActividades {
         
        
     }
- 
+    
     public String lista_actividades(){  //
         
          return ctrl.actividades();
