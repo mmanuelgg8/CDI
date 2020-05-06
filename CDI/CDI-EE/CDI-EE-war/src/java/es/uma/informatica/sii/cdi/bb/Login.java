@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -37,7 +37,7 @@ public class Login implements Serializable{
     private String email;
     private String apellidos;
     private String passwordrepeat;
-
+    private String clase;
     @Inject
     private ControlAutorizacion ctrl;
 
@@ -63,9 +63,31 @@ public class Login implements Serializable{
 
     public String aniadirusuario(){
        //if(password.equals(passwordrepeat)){
-        System.out.println(usuario);
-        System.out.println(password);
-          usuarios.add(new Usuario(usuario,password));
+        //System.out.println(usuario);
+        //System.out.println(password);
+        switch(clase){
+            case "Alumno":
+                Alumno a = new Alumno(usuario,password);
+                a.setNombre(apellidos);
+                usuarios.add(a);
+                break;
+            case "PDI":
+                PDI p = new PDI(usuario,password);
+                p.setNombre(apellidos);
+                usuarios.add(p);
+                break;
+            case "PAS":
+                PAS pa = new PAS(usuario,password);
+                pa.setNombre(apellidos);
+                usuarios.add(pa);
+                break;
+            case "ONG":
+                ONG o = new ONG(usuario,password);
+                o.setNombre(apellidos);
+                usuarios.add(o);
+                break;
+        }
+          
        //}
 	   return "login.xhtml";
     }
@@ -117,7 +139,15 @@ public class Login implements Serializable{
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-   
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+    
     public String autenticar() {
         // Implementar este método
         String res = null;
@@ -127,7 +157,7 @@ public class Login implements Serializable{
         } else {
             Usuario actual = null;
             for (Usuario user : usuarios) {
-                if (user.equals(new Usuario(this.usuario, this.password))) {
+                if (user.getUsername().equals(this.usuario)) {
                     actual = user;
                 }
             }

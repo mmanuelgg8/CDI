@@ -22,32 +22,32 @@
                 
                         <tr>
                             <td>Nombre: </td>
-                            <td><h:inputText a:placeholder="#{editarPerfil.nombre}" value="#{editarPerfil.nombre}" id="name" class="form-control form-control-user"/></td>
+                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getNombre()}" value="#{editarPerfil.nombre}" id="name" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td>Username: </td>
-                            <td><h:inputText a:placeholder="#{editarPerfil.username}" value="#{editarPerfil.username}" id="username" class="form-control form-control-user"/></td>
+                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getUsername()}" value="#{editarPerfil.username}" id="username" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Password: </td>
-                            <td><h:inputText a:placeholder="*******" value="#{editarPerfil.password}" id="password" class="form-control form-control-user"/></td>
+                            <td><h:inputSecret a:placeholder="*******" value="#{editarPerfil.password}" id="password" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Email: </td>
-                            <td><h:inputText a:placeholder="#{editarPerfil.email}" value="#{editarPerfil.email}" id="email" class="form-control form-control-user"/></td>
+                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getEmail()}" value="#{editarPerfil.email}" id="email" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Teléfono: </td>
-                            <td><h:inputText a:placeholder="#{editarPerfil.telefono}" value="#{editarPerfil.telefono}" id="telefono" class="form-control form-control-user"/></td>
+                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getTelefono()}" value="#{editarPerfil.telefono}" id="telefono" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td colspan="7">
-                                <h:commandButton value="Guardar cambios" action="#{EditarPerfil.guardarCambios()}" style="background-color: lightblue"/>
+                                <h:commandButton value="Guardar cambios" action="#{editarPerfil.guardarCambios()}" style="background-color: lightblue"/>
                             </td>
                         </tr>
                     </table>

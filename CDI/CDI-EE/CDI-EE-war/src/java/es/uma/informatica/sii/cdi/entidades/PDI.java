@@ -30,7 +30,7 @@ public class PDI extends Usuario implements Serializable {
     public PDI(){
         
     }
-    public PDI(String username,String psw,boolean rol){
+    public PDI(String username,String psw){
         super(username,psw);  
     }
     
