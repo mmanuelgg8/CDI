@@ -9,57 +9,60 @@
     <ui:composition template="templates/layout.xhtml">
         <ui:define name="title">Proyectos</ui:define>
         <ui:define name="content">
-            <c:choose>
-                <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
-                    <h:commandButton  value="Crear Proyecto" />
-                </c:when>
-            </c:choose>
-            <h:dataTable cellpadding="2" cellspacing="2" var="proyectos" value="#{mostrarProyectos.proyectos}"
-                         styleClass = "table"
-                         headerClass = "tableHeader"
-                         rowClasses = "tableOddRow,tableEvenRow"
-                         columnClasses = "tableColumn"
-                         border="5"
-                         >
-                <h:column class="tableColumn">    				
-                    <f:facet name = "header">Nombre</f:facet>
-                        #{proyectos.nombre}
-                </h:column>
-
-                <h:column >    				
-                    <f:facet name = "header">Estado</f:facet>
-                    <c:choose>
-                        <c:when test="#{!proyectos.estado}">
-                            <h:outputText value="Activo" />
-                        </c:when>
-                        <c:otherwise>
-                            <h:outputText value="Cerrado" />
-                        </c:otherwise>
-                    </c:choose>         
-                </h:column>
-
-                <h:column >    				
-                    <f:facet name = "header">Fecha</f:facet>
-                    #{proyectos.fecha.date}/#{proyectos.fecha.month}/#{proyectos.fecha.year}
-                </h:column>
-
-                <h:column >    				
-                    <f:facet name = "header">Requisitos</f:facet>
-                        #{proyectos.requisitos}
-                </h:column>
+            <div class="card-body">
                 <c:choose>
                     <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
-                        <h:column>
-                            <f:facet name = "header">Editar</f:facet>
-                            <h:commandButton  value="Eliminar" />
-                            <h:commandButton  value="Modificar" />
-                        </h:column>
+                        <h:commandButton  value="Crear Proyecto" />
                     </c:when>
-
                 </c:choose>
-            </h:dataTable>
+                <h:dataTable cellpadding="2" cellspacing="2" var="proyectos" value="#{mostrarProyectos.proyectos}"
+                             styleClass = "table"
+                             headerClass = "tableHeader"
+                             rowClasses = "tableOddRow,tableEvenRow"
+                             columnClasses = "tableColumn"
+                             border="5"
+                             >
+                    <h:column class="tableColumn">    				
+                        <f:facet name = "header">Nombre</f:facet>
+                        <h:form>
+                            <h:commandLink value="#{proyectos.nombre}" action="actividades.xhtml"/>
+                        </h:form> 
+                    </h:column>
 
+                    <h:column >    				
+                        <f:facet name = "header">Estado</f:facet>
+                        <c:choose>
+                            <c:when test="#{!proyectos.estado}">
+                                <h:outputText value="Activo" />
+                            </c:when>
+                            <c:otherwise>
+                                <h:outputText value="Cerrado" />
+                            </c:otherwise>
+                        </c:choose>         
+                    </h:column>
 
+                    <h:column >    				
+                        <f:facet name = "header">Fecha</f:facet>
+                        #{proyectos.fecha.date}/#{proyectos.fecha.month}/#{proyectos.fecha.year}
+                    </h:column>
+
+                    <h:column >    				
+                        <f:facet name = "header">Requisitos</f:facet>
+                            #{proyectos.requisitos}
+                    </h:column>
+                    <c:choose>
+                        <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                            <h:column>
+                                <f:facet name = "header">Editar</f:facet>
+                                <h:commandButton  value="Eliminar" />
+                                <h:commandButton  value="Modificar" />
+                            </h:column>
+                        </c:when>
+
+                    </c:choose>
+                </h:dataTable>
+
+            </div>
         </ui:define>
 
     </ui:composition>    
