@@ -41,10 +41,7 @@
                         <f:facet name = "header">ONG</f:facet>
                             #{actividades.ONG.nombre}
                     </h:column>
-                    <h:column>
-                        <f:facet name = "header">Ámbitos</f:facet>
-                            #{actividades.fecha}
-                    </h:column>
+                    
                     <h:column>
                         <f:facet name = "header">Fecha</f:facet>
                         #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year}
@@ -53,7 +50,11 @@
                         <f:facet name = "header">Horario</f:facet>
                             #{actividades.horario}
                     </h:column>
-
+                    <h:column>
+                        <f:facet name = "header">Zona</f:facet>
+                            #{actividades.zona}
+                    </h:column>
+                    
                     <h:column>
                         <h:commandButton  value="Inscribirse" class="btn btn-info fas fa-bell-o"/> 
                         <c:choose>

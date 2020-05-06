@@ -70,8 +70,8 @@ public class mostrarActividades {
     public mostrarActividades() {
         actividades= new ArrayList<>();
         ONG ong = new ONG("Málaga","www.ong-malaga.es","ong-malaga","malaga@ong.es",777777771,"mlgong","mlgong");
-        Actividad a1 = new Actividad("Actividad1","conocimientos sobre vacunas",(new Date(03/06/2020)),true,1,"Marbella","actividad de mañana","vacunar a los niños en centros escolares",ong);
-        Actividad a2 = new Actividad("Actividad2"," no hace falta ningún conocimiento para realizar la actividad",(new Date(06/02/2020)),true,0,"Madrid","actividad de tarde","ayudar a los necesitados ",ong);
+        Actividad a1 = new Actividad("Actividad1","conocimientos sobre vacunas",(new Date(2020,06,03)),true,1,"Marbella","actividad de mañana","vacunar a los niños en centros escolares",ong);
+        Actividad a2 = new Actividad("Actividad2"," no hace falta ningún conocimiento para realizar la actividad",(new Date(2020,02,06)),true,0,"Madrid","actividad de tarde","ayudar a los necesitados ",ong);
         actividades.add(a1);
         actividades.add(a2);
         
