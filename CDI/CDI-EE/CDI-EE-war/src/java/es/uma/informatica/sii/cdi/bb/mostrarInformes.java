@@ -39,6 +39,13 @@ public class mostrarInformes {
         this.ctrl = ctrl;
     }
     
+    public void anadir(){
+        //TO BE MADE WITH THE BBDD IMPLEMENTATION
+    }
+    
+    public void eliminar(){
+        //TO BE MADE WITH THE BBDD IMPLEMENTATION
+    }
     
     
     @Inject

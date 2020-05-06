@@ -12,7 +12,9 @@
             <div class="card-body">
                 <c:choose>
                     <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
-                        <h:commandButton  value="Crear Actividad" class="btn btn-success fas fa-spotify" />
+                        <h:form>
+                            <h:commandButton  value="Crear Actividad" class="btn btn-success fas fa-spotify" action="#{mostrarActividades.anadir()}" />
+                        </h:form>
                     </c:when>
                 </c:choose>
                 <h:dataTable value = "#{mostrarActividades.actividades}" var = "actividades"
@@ -59,8 +61,10 @@
                         <h:commandButton  value="Inscribirse" class="btn btn-info fas fa-bell-o"/> 
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
-                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash"/>
-                                <h:commandButton  value="Modificar" class="btn btn-warning fas fa-warning"/>
+                                <h:form>
+                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarActividades.eliminar(actividades.nombre)}"/>
+                                <h:commandButton  value="Modificar" class="btn btn-warning fas fa-warning" action="#{mostrarActividades.modificar()}"/>
+                                </h:form>
                             </c:when>
 
                         </c:choose>

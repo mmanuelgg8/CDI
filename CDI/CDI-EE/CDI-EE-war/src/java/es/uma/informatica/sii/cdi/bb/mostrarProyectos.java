@@ -8,10 +8,13 @@ package es.uma.informatica.sii.cdi.bb;
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,10 +23,17 @@ import javax.inject.Named;
  * @author elena,julio y nico
  */
 @Named(value = "mostrarProyectos")
-@RequestScoped
-public class mostrarProyectos {
+@SessionScoped
+public class mostrarProyectos implements Serializable{
     private List<Proyecto> proyectos;
     private List<Actividad>actividades;
+    @Inject
+    private ControlAutorizacion ctrl;
+
+    //Datos para crearProyecto()
+    private String nombre;
+    private String requisitos;
+    
     
     public mostrarProyectos() {
         proyectos= new ArrayList<>();
@@ -62,12 +72,52 @@ public class mostrarProyectos {
         this.ctrl = ctrl;
     }
     
+    public String eliminar(String name){
+        Proyecto target = null;
+        for(Proyecto p: proyectos){
+            if(p.getNombre().equals(name)){
+                target = p;
+            }
+        }
+        if(target!=null) proyectos.remove(target);
+        return "proyectos.xhtml";
+    }
+    
+    public String crear(){
+        Proyecto target = new Proyecto(nombre, requisitos, new Date(2020,06,20) ,true);
+        proyectos.add(target);
+        return "proyectos.xhtml";
+    }
     
     
-    @Inject
-    private ControlAutorizacion ctrl;
+    
+    public void modificar(){
+        //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or be translated to other class
+    }
+    
+    public String anadir(){
+        return "crearProyectos.xhtml";
+    }
 
-    public String lista_proyectos(){  //
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getRequisitos() {
+        return requisitos;
+    }
+
+    public void setRequisitos(String requisitos) {
+        this.requisitos = requisitos;
+    }
+    
+    
+   
+    public String lista_proyectos(){  
         
          return ctrl.proyectos();
         

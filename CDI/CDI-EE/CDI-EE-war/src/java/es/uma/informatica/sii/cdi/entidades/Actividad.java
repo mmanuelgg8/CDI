@@ -164,15 +164,15 @@ public class Actividad implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
+    //Equals usa temporalmente nombre hasta que se implemente la BBDD
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Actividad)) {
             return false;
         }
         Actividad other = (Actividad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.nombre == null && other.nombre != null) || (this.nombre != null && !this.nombre.equals(other.nombre))) {
             return false;
         }
         return true;
