@@ -56,7 +56,6 @@ public class Login implements Serializable{
         usuarios.add(pas);
         usuarios.add(pdi);
         usuarios.add(gestor);
-        usuarios.add(new Usuario("luis", "luis"));
 
 
     }

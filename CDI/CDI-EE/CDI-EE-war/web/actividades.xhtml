@@ -3,12 +3,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      >
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="templates/layout-actividades.xhtml">
         <ui:define name="title">Actividades</ui:define>
         <ui:define name="content"> 
             <div class="card-body">
+                <c:choose>
+                    <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                        <h:commandButton  value="Crear Actividad" />
+                    </c:when>
+                </c:choose>
                 <h:dataTable value = "#{mostrarActividades.actividades}" var = "actividades"
                              styleClass = "table"
                              headerClass = "tableHeader"
@@ -41,12 +47,22 @@
                     </h:column>
                     <h:column>
                         <f:facet name = "header">Fecha</f:facet>
-                            #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year}
+                        #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year}
                     </h:column>
                     <h:column>
                         <f:facet name = "header">Horario</f:facet>
                             #{actividades.horario}
                     </h:column>
+                    <c:choose>
+                        <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                            <h:column>
+                                <f:facet name = "header">Editar</f:facet>
+                                <h:commandButton  value="Eliminar" />
+                                <h:commandButton  value="Modificar" />
+                            </h:column>
+                        </c:when>
+
+                    </c:choose>
                 </h:dataTable>
             </div>
 

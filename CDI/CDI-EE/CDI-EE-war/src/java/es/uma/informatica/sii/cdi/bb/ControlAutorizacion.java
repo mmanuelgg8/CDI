@@ -73,6 +73,13 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
     
+    public boolean getRol_gestor(){
+        if(usuario instanceof PDI){
+            PDI u = (PDI) usuario;
+            return u.isRol_gestor();
+        }
+        return false;
+    }
 
     public String home() {
         /*
