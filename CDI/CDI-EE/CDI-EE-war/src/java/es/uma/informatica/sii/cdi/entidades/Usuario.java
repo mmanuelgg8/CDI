@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
 @Entity
 public class Usuario implements Serializable {
     @Id
-     Long id;
+    Long id;
     String username;
     private String password;
     String nombre;
