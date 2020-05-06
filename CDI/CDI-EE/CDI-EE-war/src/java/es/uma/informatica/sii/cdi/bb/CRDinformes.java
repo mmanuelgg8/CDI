@@ -25,8 +25,7 @@ public class CRDinformes {
     private Informe i;
     private List<Informe>informes;
     public CRDinformes() {
-        //Create informe
-        i=new Informe();
+       informes=new ArrayList<>();
       
     }
 
@@ -60,6 +59,12 @@ public class CRDinformes {
     
     @Inject
     private ControlAutorizacion ctrl;
+    
+     public List<Informe> crearInforme(){
+        Informe i = new Informe();
+        informes.add(i);
+        return informes;
+    }
 
       public String eliminar(Long id){  
          //Delete informe

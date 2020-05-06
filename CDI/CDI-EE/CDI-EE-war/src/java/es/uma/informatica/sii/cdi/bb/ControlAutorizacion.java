@@ -23,6 +23,16 @@ public class ControlAutorizacion implements Serializable {
     private List<Informe> informes;
     private List<Actividad> actividades;
     private List<Proyecto> proyectos;
+    private Informe informe;
+
+    public Informe getInforme() {
+        return informe;
+    }
+
+    public void setInforme(Informe informe) {
+        this.informe = informe;
+    }
+    
 
     public String getRol(){
         if(usuario instanceof PDI){
