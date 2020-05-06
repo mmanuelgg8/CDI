@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+     <ui:composition template="templates/layout.xhtml">
+        <ui:define name="title">Informes</ui:define>
+        <ui:define name="content"> 
+            <div class="card-body">
+
+                  <c:choose>
+                    <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                        <h:form>
+                        <h:commandButton  value="Crear Informe" class="btn btn-success fas fa-spotify" action="#{mostrarInforme.anadir()}"/>
+                        </h:form>
+                    </c:when>
+                </c:choose>
+                   	
+                 <h:dataTable value = "#{mostrarInformes.informes}" var = "informes"
+                             styleClass = "table"
+                             headerClass = "tableHeader"
+                             rowClasses = "tableOddRow,tableEvenRow"
+                             columnClasses = "tableColumn"
+                             border="5"
+                             >
+                             
+                            <h:column class="tableColumn">    				
+                                <f:facet name = "header">Fecha de informe</f:facet>    				
+                                    #{informes.fecha}
+                            </h:column>
+                            <h:column class="tableColumn">    				
+                                <f:facet name = "header">Estado del informe</f:facet>    				
+                                    #{informes.reportado}
+                            </h:column>
+                             <h:column class="tableColumn">    				
+                                <f:facet name = "header">Comentarios</f:facet>    				
+                                    #{informes.comentarios}
+                            </h:column>
+                            <c:choose>
+                        <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                            <h:column>
+                                <f:facet name = "header">Editar</f:facet>
+                                <h:form>
+                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarInformes.eliminar(informes.id)}"/>
+                                </h:form>
+                            </h:column>
+                        </c:when>
+
+                    </c:choose>
+                     </h:dataTable>
+            </div>
+
+
+        </ui:define>
+
+    </ui:composition>    
+
+</html>

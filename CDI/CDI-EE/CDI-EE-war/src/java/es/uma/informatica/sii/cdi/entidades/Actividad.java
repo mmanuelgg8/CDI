@@ -37,7 +37,24 @@ public class Actividad implements Serializable {
     private int tipo;
     private String Zona;
     private String horario;
-    private String motivo;
+    private String informacion;
+    
+    public Actividad(){
+        
+    }
+
+    public Actividad(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String informacion,ONG ong){
+        this.nombre=nombre;
+        this.requisitos=requisitos;
+        this.fecha=fecha;
+        this.estado=estado;
+        this.tipo=tipo;
+        this.Zona=zona;
+        this.horario=horario;
+        this.informacion=informacion;
+        this.es_gestionada_por=ong;
+        
+    }
 
     @ManyToOne
     private Proyecto pertenece_a;
@@ -57,7 +74,11 @@ public class Actividad implements Serializable {
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
     }
-
+    
+    public ONG getONG(){
+        return es_gestionada_por;
+    }
+    
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
@@ -121,12 +142,12 @@ public class Actividad implements Serializable {
         this.horario = horario;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public String getInformacion() {
+        return informacion;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
     
     public Long getId() {
@@ -143,15 +164,15 @@ public class Actividad implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
+    //Equals usa temporalmente nombre hasta que se implemente la BBDD
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Actividad)) {
             return false;
         }
         Actividad other = (Actividad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.nombre == null && other.nombre != null) || (this.nombre != null && !this.nombre.equals(other.nombre))) {
             return false;
         }
         return true;

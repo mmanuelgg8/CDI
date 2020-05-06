@@ -16,6 +16,15 @@ public class Informe implements Serializable {
     private boolean reportado;
     private String comentarios;
     
+    public Informe(){
+        
+    }
+    
+    public Informe(Date fecha, boolean repor, String comentarios){
+        this.fecha=fecha;
+        this.reportado=repor;
+        this.comentarios=comentarios;
+    }
     
     
    public Long getId() {

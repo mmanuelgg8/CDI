@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04-may-2020, 20:56:59
+    Author     : mmanu
+*/
+
+.table {   
+    border-collapse:collapse;
+    border:2px solid #0000ff;
+}
+
+.tableHeader {
+    text-align:center;
+    color: #0000ff;
+    background:none repeat scroll 0 0 #b5b5b5;
+    border-bottom:4px solid #0000ff;  
+    padding:2px;
+}
+
+.tableOddRow {
+    color: #000;
+    text-align:center;
+    background:none repeat scroll 0 0 #ffffff;	
+}
+
+.tableEvenRow {
+    color: #000;
+    text-align:center;
+    background:none repeat scroll 0 0 #d3d3d3;
+}
+
+.tableColumn{
+    column-rule-color: #0000ff;
+
+}
+
+.filterRight{
+    position: 
+    
+}
