@@ -8,68 +8,47 @@
         <ui:define name="title">Informes</ui:define>
         <ui:define name="content"> 
             <div class="card-body">
-                
-                   
-                
-                  <h:dataTable value = "#{CRDinformes}" var = "administrar informes"
+
+                  <c:choose>
+                    <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                        <h:form>
+                        <h:commandButton  value="Crear Informe" class="btn btn-success fas fa-spotify" action="#{mostrarInforme.anadir()}"/>
+                        </h:form>
+                    </c:when>
+                </c:choose>
+                   	
+                 <h:dataTable value = "#{mostrarInformes.informes}" var = "informes"
                              styleClass = "table"
                              headerClass = "tableHeader"
                              rowClasses = "tableOddRow,tableEvenRow"
                              columnClasses = "tableColumn"
                              border="5"
                              >
-
-                            <h:column class="tableColumn"> 
-                               
-                                <f:facet name = "header">Ver Informes</f:facet>  
-                                   
-                                    #{crdInformes.i.id}
-                            </h:column>
-
-                            <h:column class="tableColumn">    				
-                                <f:facet name = "header">Crear Informe</f:facet>    				
-                                    #{crdInformes.setI(i)}
-                            </h:column>
-
-
-                            <h:column class="tableColumn">    				
-                                <f:facet name = "header">Eliminar</f:facet>    				
-                                    #{crdInformes.eliminar(id)}
-                            </h:column>
-                     </h:dataTable>
-                   	
-                 <h:dataTable value = "#{mostrarinformes}" var = "informes"
-                             styleClass = "table"
-                             headerClass = "tableHeader"
-                             rowClasses = "tableOddRow,tableEvenRow"
-                             columnClasses = "tableColumn"
-                             border="5"
-                             >  
                              
                             <h:column class="tableColumn">    				
                                 <f:facet name = "header">Fecha de informe</f:facet>    				
-                                    #{mostrarinformes.ctrl.informe.fecha}
+                                    #{informes.fecha}
                             </h:column>
                             <h:column class="tableColumn">    				
                                 <f:facet name = "header">Estado del informe</f:facet>    				
-                                    #{mostrarinformes.ctrl.informe.reportado}
+                                    #{informes.reportado}
                             </h:column>
                              <h:column class="tableColumn">    				
                                 <f:facet name = "header">Comentarios</f:facet>    				
-                                    #{mostrarinformes.ctrl.informe.comentarios}
+                                    #{informes.comentarios}
                             </h:column>
-                     
-                   
-                              
-                </h:dataTable>
-                  <h:commandButton value="Añadir Informe"  action="#{crdInformes.crearInforme()}" style="background-color: darkseagreen"/>
-                           
-                
-                 <a href="index.xhtml" class="btn btn-primary btn-user btn-block">
-                        Volver a Inicio
-                 </a>
+                            <c:choose>
+                        <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
+                            <h:column>
+                                <f:facet name = "header">Editar</f:facet>
+                                <h:form>
+                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarInformes.eliminar(informes.id)}"/>
+                                </h:form>
+                            </h:column>
+                        </c:when>
 
-                 
+                    </c:choose>
+                     </h:dataTable>
             </div>
 
 

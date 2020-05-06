@@ -105,13 +105,13 @@ public class Proyecto implements Serializable {
         }
         
     }
-
+    // Equals usa nombre temporalmente antes de haber implementado la BBDD
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Proyecto proyecto = (Proyecto) o;
-        return id.equals(proyecto.id);
+        return nombre.equals(proyecto.nombre);
     }
 
     @Override
