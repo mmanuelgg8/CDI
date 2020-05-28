@@ -39,32 +39,33 @@
                                 <h:form class="user">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <h:inputText value="#{login.usuario}" class="form-control form-control-user" id="exampleFirstName" a:placeholder="Nombre"/>
+                                            <h:inputText value="#{registro.user.username}" class="form-control form-control-user" id="exampleFirstName" a:placeholder="User"/>
                                         </div>
                                         <div class="col-sm-6">
-                                            <h:inputText value="#{login.apellidos}" class="form-control form-control-user" id="exampleLastName" a:placeholder="Apellidos"/>
+                                            <h:inputText value="#{registro.user.nombre}" class="form-control form-control-user" id="exampleLastName" a:placeholder="Nombre"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h:inputText value="#{login.email}" class="form-control form-control-user" id="exampleInputEmail" a:placeholder="Dirección de Correo Electrónico"/>
+                                        <h:inputText value="#{registro.user.email}" class="form-control form-control-user" id="exampleInputEmail" a:placeholder="Dirección de Correo Electrónico"/>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <h:inputSecret value="#{login.password}" class="form-control form-control-user" id="exampleInputPassword" a:placeholder="Contraseña"/>
+                                            <h:inputSecret value="#{registro.user.password}" class="form-control form-control-user" id="exampleInputPassword" a:placeholder="Contraseña"/>
                                         </div>
                                         <div class="col-sm-6">
-                                            <h:inputSecret value="#{login.passwordrepeat}" class="form-control form-control-user" id="exampleRepeatPassword" a:placeholder="Repetir Contraseña"/>
+                                            <h:inputSecret value="#{registro.passwordrepeat}" class="form-control form-control-user" id="exampleRepeatPassword" a:placeholder="Repetir Contraseña"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h:selectOneMenu class="form-control form-control-user" value="#{login.clase}">
+                                        <h:selectOneMenu class="form-control form-control-user" value="#{registro.clase}">
                                             <f:selectItem itemLabel="Alumno" itemValue="Alumno"/>
                                             <f:selectItem itemLabel="PDI" itemValue="PDI"/>
                                             <f:selectItem itemLabel="PAS" itemValue="PAS"/>
                                             <f:selectItem itemLabel="ONG" itemValue="ONG"/> 
                                         </h:selectOneMenu>
                                     </div>
-                                    <h:commandButton id="login" action="#{login.aniadirusuario()}" class="btn btn-primary btn-user btn-block" value="Registrar Cuenta">
+                                    <h:messages style="color:red"/>
+                                    <h:commandButton id="login" action="#{registro.aniadirusuario()}" class="btn btn-primary btn-user btn-block" value="Registrar Cuenta">
                                     </h:commandButton>
                                     <a href="index.xhtml" class="btn btn-primary btn-user btn-block">
                                         Volver a Inicio
