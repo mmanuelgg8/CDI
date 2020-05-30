@@ -44,6 +44,8 @@ public class CDIImpl implements CDI {
                     a.setPassword(u.getPassword());
                     a.setNombre(u.getNombre());
                     a.setCadenaValidacion(u.getCadenaValidacion());
+                    a.setEmail(u.getEmail());
+                    a.setTelefono(u.getTelefono());
                     em.persist(a);
                     break;
                 case "PDI":
@@ -52,6 +54,8 @@ public class CDIImpl implements CDI {
                     p.setPassword(u.getPassword());
                     p.setNombre(u.getNombre());
                     p.setCadenaValidacion(u.getCadenaValidacion()); 
+                    p.setEmail(u.getEmail());
+                    p.setTelefono(u.getTelefono());
                     em.persist(p);
                     break;
                 case "PAS":
@@ -60,6 +64,8 @@ public class CDIImpl implements CDI {
                     pa.setPassword(u.getPassword());
                     pa.setNombre(u.getNombre());
                     pa.setCadenaValidacion(u.getCadenaValidacion());
+                    pa.setEmail(u.getEmail());
+                    pa.setTelefono(u.getTelefono());
                     em.persist(pa);
                     break;
                 case "ONG":
@@ -68,15 +74,17 @@ public class CDIImpl implements CDI {
                     o.setPassword(u.getPassword());
                     o.setNombre(u.getNombre());
                     o.setCadenaValidacion(u.getCadenaValidacion());
+                    o.setEmail(u.getEmail());
+                    o.setTelefono(u.getTelefono());
                     em.persist(o);
                     break;
         }
 
         
-        String url_validacion = "http://localhost:1527/CDIEE-war/faces/validarCuenta.xhtml?username="
+        String url_validacion = "http://localhost:1527/CDIEE-war/faces/validar.xhtml?username="
                 + u.getUsername() + "&codigoValidacion=" + u.getCadenaValidacion();
 
-        System.out.println(url_validacion);
+        System.out.println(u.getCadenaValidacion());
     }
 
     private String generarCadenaAleatoria() {
@@ -173,6 +181,25 @@ public class CDIImpl implements CDI {
         em.refresh(usuarioAuxiliar);
         return usuarioAuxiliar;
 
+    }
+    
+    @Override
+    public void modificarUsuario(Usuario u) throws CDIException {
+        Usuario user = em.find(Usuario.class, u.getUsername());
+        if(user == null) throw new UsernameInexistenteException();
+        em.merge(u);
+    }
+    
+    @Override
+    public void eliminarUsuario(Usuario u) throws CDIException {
+        Usuario user = em.find(Usuario.class, u.getUsername());
+        if(user == null) throw new UsernameInexistenteException();
+        em.remove(user);
+    }
+
+    @Override
+    public void solicitaCode() {
+        System.out.println(generarCadenaAleatoria());
     }
 
 

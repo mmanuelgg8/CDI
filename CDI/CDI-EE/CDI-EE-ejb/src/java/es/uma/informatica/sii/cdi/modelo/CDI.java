@@ -15,6 +15,8 @@ public interface CDI {
     public void validarCuenta(String cuenta, String validacion) throws CDIException;
     public void compruebaLogin(Usuario u) throws CDIException;
     public Usuario refrescarUsuario(Usuario u) throws CDIException;
-
+    public void modificarUsuario(Usuario u) throws CDIException;
+    public void eliminarUsuario(Usuario u) throws CDIException;
+    public void solicitaCode();
 }
 
