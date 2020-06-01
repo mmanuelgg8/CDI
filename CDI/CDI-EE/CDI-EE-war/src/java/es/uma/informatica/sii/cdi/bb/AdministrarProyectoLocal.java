@@ -5,6 +5,7 @@
  */
 package es.uma.informatica.sii.cdi.bb;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,7 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface AdministrarProyectoLocal {
     public void crearProyectos();
-    public void modificarProyectos(Long id);
+    public void modificarProyectos(Long id,String nombre,String requisitos,Date fecha,boolean estado);
     public void eliminarProyectos(Long id);
     public void mostrarProyectos();
 }

@@ -10,6 +10,7 @@ import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.modelo.ProyectoException;
 import static java.sql.DriverManager.println;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,13 +33,24 @@ public class AdministrarProyecto implements AdministrarProyectoLocal {
         em.persist(p);
     }
     @Override 
-    public void modificarProyectos(Long id){
+    public void modificarProyectos(Long id,String nombre,String requisitos,Date fecha,boolean estado){
         Proyecto p= em.find(Proyecto.class, id);
          if( p == null)
             try {
                 throw new ProyectoException();
          } catch (ProyectoException ex) {
              Logger.getLogger(AdministrarProyecto.class.getName()).log(Level.SEVERE, null, ex);
+         }else{
+               if(nombre!=null){
+                 p.setNombre(nombre);
+             }
+             if(requisitos!=null){
+                 p.setRequisitos(requisitos);
+             }
+             if(fecha!=null){
+                 p.setFecha(fecha);
+             }
+             p.setEstado(estado);
          }
          em.refresh(p);
         

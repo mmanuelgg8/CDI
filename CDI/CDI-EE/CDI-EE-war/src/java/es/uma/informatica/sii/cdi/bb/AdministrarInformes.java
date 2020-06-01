@@ -9,6 +9,7 @@ import es.uma.informatica.sii.cdi.entidades.Informe;
 import es.uma.informatica.sii.cdi.modelo.InformeException;
 import static java.sql.DriverManager.println;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,15 +32,27 @@ public class AdministrarInformes implements AdministrarInformesLocal {
         em.persist(i);
     }
     @Override 
-    public void modificarInformes(Long id){
+    public void modificarInformes(Long id,Date fecha,boolean reportado,String comentario){
         Informe i= em.find(Informe.class, id);
          if( i == null)
             try {
                 throw new InformeException();
          } catch (InformeException ex) {
              Logger.getLogger(AdministrarInformes.class.getName()).log(Level.SEVERE, null, ex);
+         }else{
+             if(fecha!=null){
+                i.setFecha(fecha);
+            }
+            if(comentario!=null){
+                i.setComentarios(comentario);
+            }
+            i.setReportado(reportado);
+            em.refresh(i);
          }
-         em.refresh(i);
+         
+
+       
+         
         
     }
     @Override
