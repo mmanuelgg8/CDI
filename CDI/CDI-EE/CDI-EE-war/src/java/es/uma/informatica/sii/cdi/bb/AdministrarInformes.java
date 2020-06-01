@@ -68,19 +68,5 @@ public class AdministrarInformes implements AdministrarInformesLocal {
         
     }
 
-    @Override
-    public List<String> informes() {
-        List<Informe>  lista = em.createNamedQuery("buscarInforme").getResultList();
-        List<String> result = new ArrayList<>();
-        
-        for(Informe i : lista){
-            if(i.getId()!=null) {
-                result.add(i.getId()+","+i.getComentarios()+","+i.getFecha()+","+i.isReportado());
-            }
-        }
-            
-        return result;
-    }
-
     
 }

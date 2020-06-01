@@ -17,6 +17,5 @@ public interface AdministrarProyectoLocal {
     public void crearProyectos();
     public void modificarProyectos(Long id);
     public void eliminarProyectos(Long id);
-    public List<String> proyectos();
     public void mostrarProyectos();
 }

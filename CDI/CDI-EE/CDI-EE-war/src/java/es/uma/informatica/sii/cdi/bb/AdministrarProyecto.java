@@ -57,19 +57,7 @@ public class AdministrarProyecto implements AdministrarProyectoLocal {
         em.remove(p);
         
     }
-    @Override
-    public List<String> proyectos() {
-        List<Proyecto>  lista = em.createNamedQuery("buscarProyecto").getResultList();
-        List<String> result = new ArrayList<>();
-        
-        for(Proyecto p : lista){
-            if(p.getId()!=null) {
-                result.add(p.getNombre()+p.getRequisitos());
-            }
-        }
-            
-        return result;
-    }
+    
 
     @Override
     public void mostrarProyectos() {

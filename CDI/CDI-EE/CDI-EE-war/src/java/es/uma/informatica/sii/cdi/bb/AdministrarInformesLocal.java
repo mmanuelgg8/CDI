@@ -19,6 +19,6 @@ public interface AdministrarInformesLocal {
     public void modificarInformes(Long id);
     public void eliminarInformes(Long id);
     public void mostrarInformes();
-    public List<String> informes();
+    
     
 }

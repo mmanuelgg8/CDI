@@ -58,20 +58,6 @@ public class AdministrarActividades implements AdministrarActividadesLocal {
     }
 
     @Override
-    public List<String> actividades() {
-        List<Actividad>  lista = em.createNamedQuery("buscarActividad").getResultList();
-        List<String> result = new ArrayList<>();
-        
-        for(Actividad a : lista){
-            if(a.getId()!=null) {
-                result.add(a.getNombre()+ ","+a.getHorario()+ ","+a.getInformacion()+a.getRequisitos()+","+a.getZona());
-            }
-        }
-            
-        return result;
-    }
-
-    @Override
     public void mostrarActividades() {
         List<Actividad>lista = em.createNamedQuery("mostrarActividad").getResultList();
         

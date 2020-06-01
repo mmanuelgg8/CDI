@@ -17,7 +17,6 @@ public interface AdministrarActividadesLocal {
     public void crearActividades();
     public void modificarActividades(Long id);
     public void eliminarActividades(Long id);
-    public List<String> actividades();
     public void mostrarActividades();
     
 }
