@@ -6,9 +6,13 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
+import es.uma.informatica.sii.cdi.modelo.CDI;
+import es.uma.informatica.sii.cdi.modelo.CDIException;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -24,6 +28,15 @@ public class ControlAutorizacion implements Serializable {
     private List<Actividad> actividades;
     private List<Proyecto> proyectos;
     private Informe informe;
+    
+    @EJB
+    private CDI cdi;
+    
+     /**
+     * Creates a new instance of ControlAutorizacion
+     */
+    public ControlAutorizacion() {
+    }
 
     public Informe getInforme() {
         return informe;
@@ -127,10 +140,45 @@ public class ControlAutorizacion implements Serializable {
         usuario = null;
         return "login.xhtml";
     }
-
-    /**
-     * Creates a new instance of ControlAutorizacion
-     */
-    public ControlAutorizacion() {
+    
+    // Estos metodos han sido trasladados desde el antiguo EditarPerfil.java
+    // Al trasladar estos metodos aqui espero poder mejorar la pagina web correspondiente
+    
+    public String guardarCambios(){
+        try {
+            cdi.modificarUsuario(usuario);
+            setUsuario(cdi.refrescarUsuario(usuario));
+            return home();
+        } catch (CDIException ex) {
+            FacesMessage fm = new FacesMessage("Fallo en modificacion");
+            FacesContext.getCurrentInstance().addMessage("modPerfil:user", fm);
+            return null;
+        }
+        /*
+        Usuario u=ctrl.getUsuario();
+        u.setEmail(email);
+        u.setUsername(username);
+        u.setPassword(password);
+        u.setNombre(nombre);
+        u.setTelefono(telefono);
+        */        
+    }
+    
+    public String eliminarUser(){
+        try{
+            cdi.eliminarUsuario(usuario);
+            return logout();
+        } catch (CDIException ex) {
+            FacesMessage fm = new FacesMessage("Fallo en eliminacion");
+            FacesContext.getCurrentInstance().addMessage("modPerfil:user", fm);
+            return null;
+        }
+    }
+    
+    public String solicitaGestor(){
+        cdi.solicitaCode();
+        FacesMessage fm = new FacesMessage("Fallo en eliminacion");
+        FacesContext.getCurrentInstance().addMessage("modPerfil:gestor", fm);
+        return null;
     }
 }

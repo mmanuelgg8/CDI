@@ -36,11 +36,12 @@
                             </div>
                             <h:form id="login" class="user">
                                 <div class="form-group">
-                                    <h:inputText a:placeholder="Usuario"  value="#{login.usuario}" id="username" class="form-control form-control-user" />
+                                    <h:inputText a:placeholder="Usuario"  value="#{login.usuario.username}" id="username" class="form-control form-control-user" />
                                 </div>
                                 <div class="form-group">
-                                    <h:inputSecret a:placeholder="Contraseña"  value="#{login.password}" id="password" class="form-control form-control-user" />
+                                    <h:inputSecret a:placeholder="Contraseña"  value="#{login.usuario.password}" id="password" class="form-control form-control-user" />
                                 </div>
+                                <h:messages style="color:red"/>
                                 <h:commandButton id="log" value="Iniciar Sesión" action="#{login.autenticar()}" class="btn btn-primary btn-user btn-block"/>
                                 <a href="index.xhtml" class="btn btn-primary btn-user btn-block">
                                     Volver a Inicio

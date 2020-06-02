@@ -6,6 +6,11 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
+import es.uma.informatica.sii.cdi.modelo.CDI;
+import es.uma.informatica.sii.cdi.modelo.CDIException;
+import es.uma.informatica.sii.cdi.modelo.PasswordInvalidaException;
+import es.uma.informatica.sii.cdi.modelo.UsernameInactivoException;
+import es.uma.informatica.sii.cdi.modelo.UsernameInexistenteException;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,128 +32,55 @@ import javax.inject.Named;
 @Named(value = "login")
 @SessionScoped
 public class Login implements Serializable{
-
-    private String usuario;
-    private String password;
-    private List<Usuario> usuarios;
     
+    @Inject
+    private CDI cdi;
     
-    //variables para hacer el registro
-    private String email;
-    private String apellidos;
-    private String passwordrepeat;
-    private String clase;
     @Inject
     private ControlAutorizacion ctrl;
+
+    private Usuario usuario;
 
     /**
      * Creates a new instance of Login
      */
     public Login() {
-        usuarios = new ArrayList<>();
-        Alumno tony = new Alumno("Macaroni", "Peperoni", "Pizza", "42 A", 2, "66677789z", "Tony", "guacamoly@oof.com", 950123456, "tony", "funny");
-        PAS pas = new PAS("García", "Pérez", "265463788x", "conserje", "Juan", "juan@gmail.com", 667667677, "juanillo", "pswpas");
-        PDI pdi = new PDI("Sánchez", "Romero", "250367489z", "ingeriero informatico", "lenguaje de la computacion", 205, "Carlos", "carlos@gmail.com", 666382922, "carlitos", "pswpdi", false);
-        PDI gestor = new PDI("Zapatero", "Rajoy", "250367485t", "licenciado en medicina", "anatomia", 205, "Pedro", "pedro@gmail.com", 666382992, "pedrito", "pswgestor", true);
-        ONG ong1 = new ONG("España", "MedicoSinFronteras.com", "MedicoSinFronteras", "medicos@gmail.com", 667667679, "ONGmed", "pswONG");
-        usuarios.add(tony);
-        usuarios.add(ong1);
-        usuarios.add(pas);
-        usuarios.add(pdi);
-        usuarios.add(gestor);
-
-
-    }
-
-    public String aniadirusuario(){
-       //if(password.equals(passwordrepeat)){
-        //System.out.println(usuario);
-        //System.out.println(password);
-        switch(clase){
-            case "Alumno":
-                Alumno a = new Alumno(usuario,password);
-                a.setNombre(apellidos);
-                usuarios.add(a);
-                break;
-            case "PDI":
-                PDI p = new PDI(usuario,password);
-                p.setNombre(apellidos);
-                usuarios.add(p);
-                break;
-            case "PAS":
-                PAS pa = new PAS(usuario,password);
-                pa.setNombre(apellidos);
-                usuarios.add(pa);
-                break;
-            case "ONG":
-                ONG o = new ONG(usuario,password);
-                o.setNombre(apellidos);
-                usuarios.add(o);
-                break;
-        }
-          
-       //}
-	   return "login.xhtml";
+        usuario = new Usuario();
     }
      
-    public String getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getPasswordrepeat() {
-        return passwordrepeat;
-    }
-
-    public void setPasswordrepeat(String passwordrepeat) {
-        this.passwordrepeat = passwordrepeat;
-    }
-
-    public void setUsuario(String usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public String getClase() {
-        return clase;
-    }
-
-    public void setClase(String clase) {
-        this.clase = clase;
     }
     
     public String autenticar() {
+        try{
+            cdi.compruebaLogin(usuario);
+            ctrl.setUsuario(cdi.refrescarUsuario(usuario));
+            return ctrl.home();
+        } catch (UsernameInexistenteException e) {
+            FacesMessage fm = new FacesMessage("La cuenta no existe");
+            FacesContext.getCurrentInstance().addMessage("login:user", fm);
+        } catch (PasswordInvalidaException e) {
+            FacesMessage fm = new FacesMessage("La contraseña no es correcta");
+            FacesContext.getCurrentInstance().addMessage("login:pass", fm);
+        } catch (UsernameInactivoException e) {
+            FacesMessage fm = new FacesMessage("La cuenta existe pero no está activa");
+            FacesContext.getCurrentInstance().addMessage("login:user", fm);
+        } catch (CDIException e) {
+            FacesMessage fm = new FacesMessage("Error: " + e);
+            FacesContext.getCurrentInstance().addMessage(null, fm);
+        }
+        return null;
+        
+        
+        
         // Implementar este método
+        
+        /*
         String res = null;
         FacesContext ctx = FacesContext.getCurrentInstance();
         if (this.usuario.length() == 0) {
@@ -170,6 +102,7 @@ public class Login implements Serializable{
             }
         }
         return res;
+        */
     }
 
 }

@@ -23,27 +23,27 @@
                 
                         <tr>
                             <td>Nombre: </td>
-                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getNombre()}" value="#{editarPerfil.nombre}" id="name" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{controlAutorizacion.usuario.nombre}" id="name" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td>Username: </td>
-                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getUsername()}" value="#{editarPerfil.username}" id="username" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{controlAutorizacion.usuario.username}" id="username" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Password: </td>
-                            <td><h:inputSecret a:placeholder="*******" value="#{editarPerfil.password}" id="password" class="form-control form-control-user"/></td>
+                            <td><h:inputSecret a:placeholder="*******" value="#{controlAutorizacion.usuario.password}" id="password" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Email: </td>
-                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getEmail()}" value="#{editarPerfil.email}" id="email" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{controlAutorizacion.usuario.email}" id="email" class="form-control form-control-user"/></td>
                         </tr>
                         
                          <tr>
                             <td>Teléfono: </td>
-                            <td><h:inputText a:placeholder="#{controlAutorizacion.usuario.getTelefono()}" value="#{editarPerfil.telefono}" id="telefono" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{controlAutorizacion.usuario.telefono}" id="telefono" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
@@ -52,15 +52,27 @@
                             <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI'}">
                                 <td><h:outputText value="Gestor: #{controlAutorizacion.rol_gestor}" class="form-control form-control-user"/></td>
+                                <tr>
+                            <td colspan="7">
+                                <h:commandButton value="Solicita ser gestor" action="#{controlAutorizacion.solicitaGestor()}" style="background-color: lightblue"/>
+                                <h:message for="gestor"/>
+                            </td>
+                        </tr>
                             </c:when>
                         </c:choose>
                         </tr>
                         
                         <tr>
                             <td colspan="7">
-                                <h:commandButton value="Guardar cambios" action="#{editarPerfil.guardarCambios()}" style="background-color: lightblue"/>
+                                <h:commandButton value="Guardar cambios" action="#{controlAutorizacion.guardarCambios()}" style="background-color: lightblue"/>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="7">
+                                <h:commandButton value="Eliminar usuario" action="#{controlAutorizacion.eliminarUser()}" style="background-color: lightblue"/>
+                            </td>
+                        </tr>
+                        
                     </table>
                 </h:form>
                 </div>
