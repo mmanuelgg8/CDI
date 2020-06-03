@@ -121,5 +121,12 @@ public class Proyecto implements Serializable {
         return nombre.hashCode()*7;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
+    
+
 
 }
