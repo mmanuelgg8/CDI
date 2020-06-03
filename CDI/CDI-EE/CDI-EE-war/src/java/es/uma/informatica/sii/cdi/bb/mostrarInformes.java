@@ -22,31 +22,6 @@ import javax.inject.Named;
 public class mostrarInformes {
     
     private List<Informe> informes;
-
-    public List<Informe> getInformes() {
-        return informes;
-    }
-
-    public void setInformes(List<Informe> informes) {
-        this.informes = informes;
-    }
-
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
-    }
-    
-    public void anadir(){
-        //TO BE MADE WITH THE BBDD IMPLEMENTATION
-    }
-    
-    public void eliminar(){
-        //TO BE MADE WITH THE BBDD IMPLEMENTATION
-    }
-    
     
     @Inject
     private ControlAutorizacion ctrl;
@@ -60,6 +35,22 @@ public class mostrarInformes {
         informes.add(i2);
         
        
+    }
+
+    public List<Informe> getInformes() {
+        return informes;
+    }
+
+    public void setInformes(List<Informe> informes) {
+        this.informes = informes;
+    }
+ 
+    public void anadir(){
+        //TO BE MADE WITH THE BBDD IMPLEMENTATION
+    }
+    
+    public void eliminar(){
+        //TO BE MADE WITH THE BBDD IMPLEMENTATION
     }
 
     public String lista_informes(){  //

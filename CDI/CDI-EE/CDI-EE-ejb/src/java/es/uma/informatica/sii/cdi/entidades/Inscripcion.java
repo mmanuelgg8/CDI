@@ -39,7 +39,7 @@ public class Inscripcion implements Serializable {
         this.fecha=fecha;
         this.estado=estado;
     }
-    @OneToMany
+    @OneToMany(mappedBy = "contenido")
     private List<Informe> contiene;
     @ManyToOne
     private Actividad esta_asociada_a;
