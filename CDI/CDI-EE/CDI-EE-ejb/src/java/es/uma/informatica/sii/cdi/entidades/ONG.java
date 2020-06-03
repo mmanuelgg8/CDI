@@ -16,12 +16,15 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findONGByName", query = "select o from ONG o where o.nombre = :oname"),
-    @NamedQuery(name = "mostrarONGs", query = "select o from Actividad o")
+    @NamedQuery(name = "mostrarONGs", query = "select o from ONG o")
 })
 public class ONG extends Usuario {
     
     private String ubicacion;
     private String web;
+    
+    @OneToMany(mappedBy = "es_gestionada_por")
+    private List<Actividad> gestiona;
     
     public ONG(){
         
@@ -35,9 +38,14 @@ public class ONG extends Usuario {
         this.ubicacion=ubicacion;
         this.web=web;
     }
-    
-    @OneToMany(mappedBy = "es_gestionada_por")
-    private List<Actividad> gestiona;
+
+    public List<Actividad> getGestiona() {
+        return gestiona;
+    }
+
+    public void setGestiona(List<Actividad> gestiona) {
+        this.gestiona = gestiona;
+    }
     
     public String getUbicacion() {
         return ubicacion;
@@ -82,7 +90,7 @@ public class ONG extends Usuario {
 
     @Override
     public String toString() {
-        return "ONG{" + "web=" + web + ", nombre=" + this.getNombre() + '}';
+        return this.getNombre();
     }
 
 

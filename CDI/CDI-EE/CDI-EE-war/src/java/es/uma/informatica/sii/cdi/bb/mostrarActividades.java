@@ -68,9 +68,7 @@ public class mostrarActividades implements Serializable{
     
     public String crear(){
         PDI admin = (PDI) ctrl.getUsuario();
-        act.crearActividades(a.getNombre(), a.getRequisitos(), new Date(), true, 0, a.getZona(), a.getHorario(), a.getInformacion(), a.getONG());
-        Actividad activ = act.devuelveActividad(a.getNombre());
-        activ.setEs_gestionada(admin);
+        act.crearActividades(a.getNombre(), a.getRequisitos(), new Date(), true, 0, a.getZona(), a.getHorario(), a.getInformacion(), a.getONG(), admin);
         return "actividades.xhtml";
     }
     

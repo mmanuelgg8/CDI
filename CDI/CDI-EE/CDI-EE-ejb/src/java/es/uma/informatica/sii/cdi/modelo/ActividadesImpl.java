@@ -7,6 +7,7 @@ package es.uma.informatica.sii.cdi.modelo;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
+import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import static java.sql.DriverManager.println;
 import java.util.ArrayList;
@@ -31,9 +32,14 @@ public class ActividadesImpl implements Actividades {
     EntityManager em;
 
    @Override
-    public void crearActividades(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String informacion,ONG ong){
+    public void crearActividades(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String informacion,ONG ong, PDI pdi){
         Actividad a = new Actividad(nombre, requisitos, fecha, estado, tipo, zona, horario, informacion, ong);
+        a.setEs_gestionada(pdi);
         em.persist(a);
+        List<Actividad> gestionada = ong.getGestiona();
+        gestionada.add(a);
+        ong.setGestiona(gestionada);
+        em.merge(ong);
     }
     @Override 
     public void modificarActividades(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String informacion){
