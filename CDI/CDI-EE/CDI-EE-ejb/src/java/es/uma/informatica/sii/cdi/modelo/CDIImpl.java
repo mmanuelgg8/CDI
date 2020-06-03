@@ -201,9 +201,14 @@ public class CDIImpl implements CDI {
     }
 
     @Override
-    public void solicitaCode() {
-        System.out.println(generarCadenaAleatoria());
+    public void solicitaCode(Usuario u) throws CDIException {
+       Usuario user = em.find(Usuario.class, u.getUsername());
+       if(user == null) throw new UsernameInexistenteException();
+       PDI p = (PDI) user;
+       p.setRol_gestor(true);
+       em.merge(p);
     }
+    
 
     public void inscribirUsuario(Actividad a, Usuario u){
         Inscripcion i = new Inscripcion(new Date(),true,u,a);

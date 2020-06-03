@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -26,24 +27,6 @@ public class PDI extends Usuario implements Serializable {
     private String departamento;
     private int despacho;
     private boolean rol_gestor;
- 
-    public PDI(){
-        
-    }
-    public PDI(String username,String psw){
-        super(username,psw);  
-    }
-    
-    public PDI(String ap1,String ap2,String dni,String titulacion,String dpto,int despacho,String nombre,String email,int tlf, String username,String psw,boolean rol){
-        super(nombre,email,tlf,username,psw);
-        this.apellido1=ap1;
-        this.apellido2=ap2;
-        this.dni=dni;
-        this.titulacion=titulacion;
-        this.departamento=dpto;
-        this.despacho=despacho;
-        this.rol_gestor=rol;
-    }
     
     @OneToMany(mappedBy = "es_gestionada")
     private List<Actividad> gestiona;
@@ -56,6 +39,32 @@ public class PDI extends Usuario implements Serializable {
     
     @ManyToMany(mappedBy="es_gestionada_por")
     private List<Asignatura> enseña_en;
+ 
+    public PDI(){
+        
+    }
+    public PDI(String username,String psw){
+        super(username,psw);
+        gestiona = new ArrayList();
+        crea = new ArrayList();
+        administra = new ArrayList();
+        enseña_en = new ArrayList();
+    }
+    
+    public PDI(String ap1,String ap2,String dni,String titulacion,String dpto,int despacho,String nombre,String email,int tlf, String username,String psw,boolean rol){
+        super(nombre,email,tlf,username,psw);
+        this.apellido1=ap1;
+        this.apellido2=ap2;
+        this.dni=dni;
+        this.titulacion=titulacion;
+        this.departamento=dpto;
+        this.despacho=despacho;
+        this.rol_gestor=rol;
+        gestiona = new ArrayList();
+        crea = new ArrayList();
+        administra = new ArrayList();
+        enseña_en = new ArrayList();
+    }
     
     public void setEnseña_en(List<Asignatura> enseña_en) {
         this.enseña_en = enseña_en;
