@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.uma.informatica.sii.cdi.bb;
+package es.uma.informatica.sii.cdi.modelo;
+
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
@@ -25,7 +26,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
  */
 @Stateless
 public class AdministrarActividades implements AdministrarActividadesLocal {
-    @PersistenceContext(unitName ="CDIAct")
+    @PersistenceContext(unitName ="CDIPU")
     EntityManager em;
 
    @Override

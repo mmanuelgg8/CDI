@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.uma.informatica.sii.cdi.bb;
+package es.uma.informatica.sii.cdi.modelo;
+
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
@@ -24,7 +25,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class AdministrarProyecto implements AdministrarProyectoLocal {
-    @PersistenceContext(unitName ="CDIPry")
+    @PersistenceContext(unitName ="CDIPU")
     EntityManager em;
 
     @Override

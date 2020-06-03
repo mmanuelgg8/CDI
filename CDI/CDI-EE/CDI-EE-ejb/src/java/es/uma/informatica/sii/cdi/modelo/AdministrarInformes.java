@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.uma.informatica.sii.cdi.bb;
+package es.uma.informatica.sii.cdi.modelo;
+
 
 import es.uma.informatica.sii.cdi.entidades.Informe;
 import es.uma.informatica.sii.cdi.modelo.InformeException;
@@ -23,7 +24,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class AdministrarInformes implements AdministrarInformesLocal {
-    @PersistenceContext(unitName ="CDIInf")
+    @PersistenceContext(unitName ="CDIPU")
     EntityManager em;
     
     @Override
