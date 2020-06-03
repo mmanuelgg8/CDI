@@ -17,7 +17,7 @@
                         </h:form>
                     </c:when>
                 </c:choose>
-                <h:dataTable value = "#{mostrarActividades.actividades}" var = "actividades"
+                <h:dataTable value = "#{mostrarActividades.mostrarActividades()}" var = "actividades"
                              styleClass = "table"
                              headerClass = "tableHeader"
                              rowClasses = "tableOddRow,tableEvenRow"
@@ -58,7 +58,9 @@
                     </h:column>
                     
                     <h:column>
+                        <h:form>
                         <h:commandButton  value="Inscribirse" class="btn btn-info fas fa-bell-o"/> 
+                        </h:form>
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
                                 <h:form>

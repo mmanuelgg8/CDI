@@ -29,6 +29,9 @@ public class ControlAutorizacion implements Serializable {
     private List<Proyecto> proyectos;
     private Informe informe;
     
+    private String cuenta;
+    private String code;
+    
     @EJB
     private CDI cdi;
     
@@ -176,9 +179,15 @@ public class ControlAutorizacion implements Serializable {
     }
     
     public String solicitaGestor(){
-        cdi.solicitaCode();
-        FacesMessage fm = new FacesMessage("Fallo en eliminacion");
-        FacesContext.getCurrentInstance().addMessage("modPerfil:gestor", fm);
-        return null;
+        try{
+            cdi.solicitaCode(usuario);
+            setUsuario(cdi.refrescarUsuario(usuario));
+            return null;
+        } catch (CDIException ex) {
+            FacesMessage fm = new FacesMessage("Fallo en solicitud");
+            FacesContext.getCurrentInstance().addMessage("modPerfil:user", fm);
+            return null;
+        }
     }
+    
 }

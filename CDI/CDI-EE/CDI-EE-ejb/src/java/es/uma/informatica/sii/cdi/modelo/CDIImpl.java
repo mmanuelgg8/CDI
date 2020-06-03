@@ -11,6 +11,7 @@ import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -198,9 +199,14 @@ public class CDIImpl implements CDI {
     }
 
     @Override
-    public void solicitaCode() {
-        System.out.println(generarCadenaAleatoria());
+    public void solicitaCode(Usuario u) throws CDIException {
+       Usuario user = em.find(Usuario.class, u.getUsername());
+       if(user == null) throw new UsernameInexistenteException();
+       PDI p = (PDI) user;
+       p.setRol_gestor(true);
+       em.merge(p);
     }
+    
 
 
 
