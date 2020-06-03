@@ -8,7 +8,9 @@ package es.uma.informatica.sii.cdi.bb;
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PDI;
+import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.modelo.Actividades;
+import es.uma.informatica.sii.cdi.modelo.Proyectos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,8 +38,13 @@ public class mostrarActividades implements Serializable{
     @EJB
     private Actividades act;
     
+    @EJB
+    private Proyectos pros;
+    
     private List<Actividad> filtro;
     private List<String> nombresFiltro;
+    private String nameONG;
+    private String namePRO;
     
     //Para el tipo de actividad consideramos que el tipo=0 corresponde con actividad de voluntariado
     //y tipo=1 corresponde con actividd aprendizaje-servicio
@@ -45,6 +52,22 @@ public class mostrarActividades implements Serializable{
         a = new Actividad();
     }
 
+    public String getNamePRO() {
+        return namePRO;
+    }
+
+    public void setNamePRO(String namePRO) {
+        this.namePRO = namePRO;
+    }
+
+    public String getNameONG() {
+        return nameONG;
+    }
+
+    public void setNameONG(String nameONG) {
+        this.nameONG = nameONG;
+    }
+    
     public Actividad getA() {
         return a;
     }
@@ -68,7 +91,9 @@ public class mostrarActividades implements Serializable{
     
     public String crear(){
         PDI admin = (PDI) ctrl.getUsuario();
-        act.crearActividades(a.getNombre(), a.getRequisitos(), new Date(), true, 0, a.getZona(), a.getHorario(), a.getInformacion(), a.getONG(), admin);
+        ONG ong = act.devuelveONG(nameONG);
+        Proyecto pro = pros.devuelveProyecto(namePRO);
+        act.crearActividades(a.getNombre(), a.getRequisitos(), new Date(), true, 0, a.getZona(), a.getHorario(), a.getInformacion(), ong, admin, pro);
         return "actividades.xhtml";
     }
     
