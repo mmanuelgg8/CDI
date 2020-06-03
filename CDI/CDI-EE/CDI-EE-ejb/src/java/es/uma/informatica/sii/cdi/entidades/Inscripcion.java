@@ -39,6 +39,12 @@ public class Inscripcion implements Serializable {
         this.fecha=fecha;
         this.estado=estado;
     }
+    public Inscripcion(Date fecha,boolean estado, Usuario u, Actividad a){
+        this.fecha=fecha;
+        this.estado=estado;
+        esta_asociada_a=a;
+        pertenece_a=u;
+    }
     @OneToMany
     private List<Informe> contiene;
     @ManyToOne
@@ -52,6 +58,30 @@ public class Inscripcion implements Serializable {
     
     public List<Informe> getContiene() {
         return contiene;
+    }
+
+    public Actividad getEsta_asociada_a() {
+        return esta_asociada_a;
+    }
+
+    public void setEsta_asociada_a(Actividad esta_asociada_a) {
+        this.esta_asociada_a = esta_asociada_a;
+    }
+
+    public Usuario getPertenece_a() {
+        return pertenece_a;
+    }
+
+    public void setPertenece_a(Usuario pertenece_a) {
+        this.pertenece_a = pertenece_a;
+    }
+
+    public PDI getEs_administrada_por() {
+        return es_administrada_por;
+    }
+
+    public void setEs_administrada_por(PDI es_administrada_por) {
+        this.es_administrada_por = es_administrada_por;
     }
 
     public void setContiene(List<Informe> contiene) {

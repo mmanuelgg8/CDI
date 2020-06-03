@@ -5,8 +5,8 @@
  */
 package es.uma.informatica.sii.cdi.bb;
 
-import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
+import es.uma.informatica.sii.cdi.modelo.CDI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -24,6 +24,10 @@ import javax.inject.Named;
 public class CRUDproyectos {
     private Proyecto p;
     private List<Proyecto>proyectos;
+    
+    @Inject
+    private CDI cdi;
+    
     public CRUDproyectos() {
         //Create proyecto
         p=new Proyecto();

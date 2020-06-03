@@ -7,13 +7,14 @@ package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
+import es.uma.informatica.sii.cdi.entidades.Usuario;
+import es.uma.informatica.sii.cdi.modelo.CDI;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,7 +33,8 @@ public class mostrarActividades implements Serializable{
     private List<String> nombresFiltro;
     @Inject
     private ControlAutorizacion ctrl;
-    
+    @Inject
+    private CDI cdi;
     //Datos para crearProyecto()
     private String nombre;
     private String requisitos;
@@ -94,8 +96,9 @@ public class mostrarActividades implements Serializable{
         //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or be translated to other class)
     }
     
-    public void inscribir(){
+    public void inscribir(Actividad a, Usuario u){
         //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or take it and move it SOMEWHERE ELSE?)
+        
     }
     
     public String anadir(){

@@ -58,7 +58,7 @@
                     </h:column>
                     
                     <h:column>
-                        <h:commandButton  value="Inscribirse" class="btn btn-info fas fa-bell-o"/> 
+                        <h:commandButton  value="Inscribirse" action="#{mostrarActividades.inscribir(actividades.id,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
                                 <h:form>

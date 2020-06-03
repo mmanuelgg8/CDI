@@ -6,11 +6,14 @@
 package es.uma.informatica.sii.cdi.modelo;
 
 
+import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Alumno;
+import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
+import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -202,6 +205,10 @@ public class CDIImpl implements CDI {
         System.out.println(generarCadenaAleatoria());
     }
 
-
+    public void inscribirUsuario(Actividad a, Usuario u){
+        Inscripcion i = new Inscripcion(new Date(),true,u,a);
+        em.persist(i);
+        
+    }
 
 }
