@@ -6,12 +6,13 @@ import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
+import es.uma.informatica.sii.cdi.entidades.Asignatura;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Saúl
+ * @author 
  */
 @Local
 public interface CDI {
@@ -27,5 +28,13 @@ public interface CDI {
     public boolean estaInscrito(String a, Usuario u);
 
 
+    //Asignaturas
+    public void crearAsignaturas(Long id, String nombre, String grado, int curso);
+    public Asignatura devuelveAsignatura(String nombre);
+    public void eliminarAsignatura(String nombre);
+    public void refreshAsignatura(Asignatura a);
+    public List<Asignatura> mostrarAsignaturas();
+    //
+    
 }
 

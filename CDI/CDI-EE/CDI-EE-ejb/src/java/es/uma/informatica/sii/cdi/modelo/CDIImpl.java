@@ -8,6 +8,7 @@ package es.uma.informatica.sii.cdi.modelo;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Alumno;
+import es.uma.informatica.sii.cdi.entidades.Asignatura;
 import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
@@ -26,7 +27,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Saúl
+ * @author 
  */
 @Stateless
 public class CDIImpl implements CDI {
@@ -233,6 +234,74 @@ public class CDIImpl implements CDI {
         a.setLista_de_inscritos(insc);
         */
     }
+    //CRUD ASIGNATURA
+    
+    @Override
+    public void crearAsignaturas(Long id, String nombre, String grado, int curso){
+        Asignatura a = new Asignatura(id, nombre, grado, curso);
+        em.persist(a);
+    }
+    @Override
+    public Asignatura devuelveAsignatura(String nombre){
+        Asignatura a = null;
+        try{
+            Query query = em.createNamedQuery("findAsignaturaByNombre");
+            query.setParameter("asnom", nombre);
+            a = (Asignatura) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        return a;
+        
+    }
+    @Override
+    public void eliminarAsignatura(String nombre){
+        Asignatura a = null;
+        try{
+            Query query = em.createNamedQuery("findAsignaturaByNombre");
+            query.setParameter("asnom", nombre);
+            a = (Asignatura) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        if( a == null){
+            try {
+                throw new CDIException();
+            } catch (CDIException ex) {
+                Logger.getLogger(ActividadesImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            em.remove(a);
+        }
+    }
+    @Override
+    public void refreshAsignatura(Asignatura as){
+        Asignatura a = null;
+        try{
+            Query query = em.createNamedQuery("findAsignaturaByNombre");
+            query.setParameter("asnom", as.getNombre());
+            a = (Asignatura) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        if( a == null){
+            try {
+                throw new CDIException();
+            } catch (CDIException ex) {
+                Logger.getLogger(ActividadesImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            a.setId(as.getId());
+            a.setCurso(as.getCurso());
+            a.setGrado(as.getGrado());
+            em.merge(a);
+        }
+    }
+    @Override
+    public List<Asignatura> mostrarAsignaturas(){
+        return em.createNamedQuery("mostrarAsignaturas").getResultList();
+    }
+    
 
     @Override
     public List<Inscripcion> mostrarInscripciones(Usuario user) {

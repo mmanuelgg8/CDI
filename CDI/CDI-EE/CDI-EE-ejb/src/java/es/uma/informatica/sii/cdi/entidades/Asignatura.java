@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -21,17 +23,23 @@ import javax.persistence.OneToMany;
  * @author mmanu
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findAsignaturaByNombre", query = "select a from Asignatura a where a.nombre = :asnom"),
+    @NamedQuery(name = "mostrarAsignaturas", query = "select a from Asignatura a")
+})
 public class Asignatura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private String nombre;
     private String grado;
     private int curso;
     @OneToMany
     private List<Actividad> trabaja_en;
+
+    
     @ManyToMany
     @JoinTable(name="matricula_asig_alum",
             joinColumns = @JoinColumn(name = "asignatura_fk"),
@@ -43,7 +51,16 @@ public class Asignatura implements Serializable {
             joinColumns = @JoinColumn(name = "asignatura_fk"),
             inverseJoinColumns = @JoinColumn(name = "pdi_fk"))
     private List<PDI> es_gestionada_por;
-
+    
+    public Asignatura(){
+        
+    }
+    public Asignatura(Long id, String nombre, String grado, int curso){
+        this.id=id;
+        this.nombre=nombre;
+        this.grado=grado;
+        this.curso=curso;
+    }
     public List<PDI> getEs_gestionada_por() {
         return es_gestionada_por;
     }
@@ -103,7 +120,14 @@ public class Asignatura implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+    
+    public String getNombre() {
+        return nombre;
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -116,6 +140,7 @@ public class Asignatura implements Serializable {
         }
         return true;
     }
+    
 
     @Override
     public String toString() {
