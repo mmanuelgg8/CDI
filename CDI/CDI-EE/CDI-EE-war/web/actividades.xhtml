@@ -58,11 +58,13 @@
                     </h:column>
                     
                     <h:column>
-
-                        <h:form>
-                        <h:commandButton  value="Inscribirse" action="#{mostrarActividades.inscribir(actividades.id,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
-                        </h:form>
-
+                        <c:choose>
+                            <c:when test="#{true}">
+                                <h:form>
+                                    <h:commandButton  value="Inscribirse" action="#{mostrarActividades.inscribir(actividades,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
+                                </h:form>
+                            </c:when>
+                        </c:choose>
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
                                 <h:form>

@@ -6,11 +6,11 @@
 
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:composition template="templates/layout-actividades.xhtml">
+    <ui:composition template="templates/layout.xhtml">
         <ui:define name="title">Mis Actividades</ui:define>
         <ui:define name="content"> 
             <div class="card-body">
-                <h:dataTable value = "#{mostrarInscripciones.mostrarMisInscripciones()}" var = "inscripciones"
+                <h:dataTable value = "#{mostrarInscripciones.mostrarInscripciones()}" var = "inscripciones"
                              styleClass = "table"
                              headerClass = "tableHeader"
                              rowClasses = "tableOddRow,tableEvenRow"
@@ -19,52 +19,30 @@
                              >
 
                     <h:column class="tableColumn" >    				
-                        <f:facet name = "header">Nombre</f:facet>
-                            #{inscripciones.nombre}
+                        <f:facet name = "header">Usuario</f:facet>
+                            #{inscripciones.pertenece_a.nombre}
                     </h:column>
 
                     <h:column>
-                        <f:facet name = "header">Información</f:facet>
-                            #{inscripciones.informacion}
+                        <f:facet name = "header">Actividad</f:facet>
+                            #{inscripciones.esta_asociada_a.nombre}
                     </h:column>
 
-                    <h:column>
-                        <f:facet name = "header">Requisitos</f:facet>
-                            #{inscripciones.requisitos}
-                    </h:column>
-                    <h:column>
-                        <f:facet name = "header">ONG</f:facet>
-                            #{inscripciones.ONG.nombre}
-                    </h:column>
-                    
                     <h:column>
                         <f:facet name = "header">Fecha</f:facet>
-                        #{inscripciones.fecha.date}/#{inscripciones.fecha.month + 1}/#{inscripciones.fecha.year}
+                            #{inscripciones.fecha.date}/#{inscripciones.fecha.month + 1}/#{inscripciones.fecha.year}
                     </h:column>
                     <h:column>
-                        <f:facet name = "header">Horario</f:facet>
-                            #{inscripciones.horario}
+                        <f:facet name = "header">Estado</f:facet>
+                            #{inscripciones.estado}
                     </h:column>
-                    <h:column>
-                        <f:facet name = "header">Zona</f:facet>
-                            #{inscripciones.zona}
-                    </h:column>
-                    
+                                     
                     <h:column>
 
                         <h:form>
-                        <h:commandButton  value="Inscribirse" action="#{mostrarActividades.inscribir(actividades.id,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
+                        <h:commandButton  value="Anular Inscripción"  class="btn btn-danger fas fa-trash"/> 
                         </h:form>
 
-                        <c:choose>
-                            <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
-                                <h:form>
-                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarActividades.eliminar(actividades.nombre)}"/>
-                                <h:commandButton  value="Modificar" class="btn btn-warning fas fa-warning" action="#{mostrarActividades.modificar()}"/>
-                                </h:form>
-                            </c:when>
-
-                        </c:choose>
                     </h:column>
 
                 </h:dataTable>

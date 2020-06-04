@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -21,6 +23,9 @@ import javax.persistence.Temporal;
  * @author mmanu
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "mostrarInscripciones", query = "select i from Inscripcion i  ")
+})
 public class Inscripcion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,13 +44,14 @@ public class Inscripcion implements Serializable {
         this.fecha=fecha;
         this.estado=estado;
     }
+
     public Inscripcion(Date fecha,boolean estado, Usuario u, Actividad a){
         this.fecha=fecha;
         this.estado=estado;
         esta_asociada_a=a;
         pertenece_a=u;
     }
-    @OneToMany
+    @OneToMany(mappedBy = "contenido")
     private List<Informe> contiene;
     @ManyToOne
     private Actividad esta_asociada_a;

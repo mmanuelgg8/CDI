@@ -14,12 +14,15 @@ import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -216,4 +219,28 @@ public class CDIImpl implements CDI {
         
     }
 
+    public List<Inscripcion> mostrarInscripciones() {
+        return em.createNamedQuery("mostrarInscripciones").getResultList();
+        
+    }
+    
+    public boolean estaInscrito(Actividad a, Usuario u){
+        boolean res = false;
+        if(em.find(Inscripcion.class,u.getNombre())==null){
+            
+        }
+        Inscripcion i = null;
+        try{
+            Query query = em.createNamedQuery("findInscripcionByActividadUsuario");
+            query.setParameter("aname", a.getNombre());
+            query.setParameter("uname", u.getNombre());
+            i = (Inscripcion) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        if( i != null){
+            res=true;
+        }
+        return res;
+    }
 }
