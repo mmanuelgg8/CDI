@@ -6,9 +6,12 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
+import es.uma.informatica.sii.cdi.modelo.InformesLocal;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,55 +22,62 @@ import javax.inject.Named;
  */
 @Named(value = "mostrarInformes")
 @RequestScoped
-public class mostrarInformes {
-    
+
+public class mostrarInformes implements Serializable{
+    private Informe i;
     private List<Informe> informes;
-
-    public List<Informe> getInformes() {
-        return informes;
-    }
-
-    public void setInformes(List<Informe> informes) {
-        this.informes = informes;
-    }
-
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
-    }
-    
-    public void anadir(){
-        //TO BE MADE WITH THE BBDD IMPLEMENTATION
-    }
-    
-    public void eliminar(){
-        //TO BE MADE WITH THE BBDD IMPLEMENTATION
-    }
-    
     
     @Inject
     private ControlAutorizacion ctrl;
-
+    
+    @EJB
+    private InformesLocal inf;
+    
+   
     public mostrarInformes() {
-        informes= new ArrayList<>();
-        
-        Informe  i1 = new Informe(new Date(2020,06,07),false, "no ha cumplido su tarea");
-        Informe  i2 = new Informe(new Date(2020,04,03),true,"el voluntario ha realizado las actividades correctamente");
-        informes.add(i1);
-        informes.add(i2);
-        
-       
+        i = new Informe();
     }
 
-    public String lista_informes(){  //
+    public Informe getInforme() {
+        return i;
+    }
+
+    public void setInforme(Informe i) {
+        this.i = i;
+    }
+
+    public List<Informe> mostrarInformes(){
+        return inf.mostrarInformes();
+    }
+    
+   
+    public String eliminar(Long id){
+        inf.eliminarInformes(id);
+        return "informes.xhtml";
+    }
+    
+    public String crear(){
+        inf.crearInformes(i.getFecha(),i.isReportado(),i.getComentarios());
+        informes.add(i);
+        return "informes.xhtml";
+    }
+    
+    public void modificar(Long id,Date fecha, boolean repor, String comentarios){
         
-         return ctrl.informes();
+        for(Informe in : informes ){
+            if(in.getId()==id){
+                in.setFecha(fecha);
+                in.setReportado(repor);
+                in.setComentarios(comentarios);
+            }
+        }
         
-        
-        
-    }  
+    }
+    
+   
+    
+    public String anadir(){
+        return "crearInformes.xhtml";
+    }
     
 }
