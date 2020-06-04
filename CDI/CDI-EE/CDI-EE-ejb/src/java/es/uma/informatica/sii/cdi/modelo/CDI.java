@@ -25,7 +25,7 @@ public interface CDI {
     public void eliminarAsignatura(String nombre);
     public void refreshAsignatura(Asignatura a);
     public List<Asignatura> mostrarAsignaturas();
-    
+    //
     
 }
 

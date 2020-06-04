@@ -58,7 +58,7 @@
                                 <f:facet name = "header">Editar</f:facet>
                                 <h:form>
                                 <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarProyectos.eliminar(proyectos.nombre)}"/>
-                                <h:commandButton  value="Modificar" class="btn btn-warning fas fa-warning" action="#{mostrarProyectos.modificar()}"/>
+                                <h:commandButton  value="Modificar" class="btn btn-warning fas fa-warning" action="#{mostrarProyectos.modificar(proyectos.nombre)}"/>
                                 </h:form>
                             </h:column>
                         </c:when>
