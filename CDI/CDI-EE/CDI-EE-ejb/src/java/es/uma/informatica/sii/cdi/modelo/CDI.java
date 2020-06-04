@@ -2,6 +2,8 @@
 package es.uma.informatica.sii.cdi.modelo;
 
 
+import es.uma.informatica.sii.cdi.entidades.Actividad;
+import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
 import java.util.List;
@@ -9,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author francis
+ * @author Saúl
  */
 @Local
 public interface CDI {
@@ -20,5 +22,10 @@ public interface CDI {
     public void modificarUsuario(Usuario u) throws CDIException;
     public void eliminarUsuario(Usuario u) throws CDIException;
     public void solicitaCode(Usuario u) throws CDIException;
+    public void inscribirUsuario(Actividad a, Usuario u);
+    public List<Inscripcion> mostrarInscripciones(Usuario user);
+    public boolean estaInscrito(String a, Usuario u);
+
+
 }
 

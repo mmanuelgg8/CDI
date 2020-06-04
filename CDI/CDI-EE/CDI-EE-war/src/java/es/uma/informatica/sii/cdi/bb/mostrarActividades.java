@@ -6,26 +6,25 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
+import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
+import es.uma.informatica.sii.cdi.entidades.Usuario;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.modelo.Actividades;
+import es.uma.informatica.sii.cdi.modelo.CDI;
 import es.uma.informatica.sii.cdi.modelo.Proyectos;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
- * @author elena y julio
+ * @author Saúl
  */
 @Named(value = "mostrarActividades")
 @SessionScoped
@@ -34,7 +33,7 @@ public class mostrarActividades implements Serializable{
     
     @Inject
     private ControlAutorizacion ctrl;
-    
+
     @EJB
     private Actividades act;
     
@@ -77,7 +76,7 @@ public class mostrarActividades implements Serializable{
     }
 
     public List<Actividad> mostrarActividades(){
-        return act.mostrarActividades();
+        return act.mostrarActividades(ctrl.getUsuario());
     }
     
     public List<ONG> mostrarONGs(){
@@ -99,10 +98,6 @@ public class mostrarActividades implements Serializable{
     
     public void modificar(){
         //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or be translated to other class)
-    }
-    
-    public void inscribir(){
-        //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or take it and move it SOMEWHERE ELSE?)
     }
     
     public String anadir(){

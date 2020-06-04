@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -24,10 +25,15 @@ public class Alumno extends Usuario implements Serializable  {
     private int pref_Cuatrimestre;
     private String dni;
     
+    @ManyToMany(mappedBy="tiene_a")
+    private List<Asignatura> matriculado_en;
+    
     public Alumno(){
+        this.matriculado_en = new ArrayList<>();
     }
     public Alumno(String username,String psw){
         super(username,psw);
+        this.matriculado_en = new ArrayList<>();
     }
     
     public Alumno(String ap1,String ap2,String grado,String curso,int cuat,String dni,String nombre,String email,int tlf, String username,String psw){
@@ -38,10 +44,8 @@ public class Alumno extends Usuario implements Serializable  {
         this.curso=curso;
         this.pref_Cuatrimestre=cuat;
         this.dni=dni;
+        this.matriculado_en = new ArrayList<>();
     }
-    
-    @ManyToMany(mappedBy="tiene_a")
-    private List<Asignatura> matriculado_en;
 
     public List<Asignatura> getMatriculado_en() {
         return matriculado_en;
@@ -51,8 +55,6 @@ public class Alumno extends Usuario implements Serializable  {
         this.matriculado_en = matriculado_en;
     }
     
-
-
     public String getApellido1() {
         return apellido1;
     }

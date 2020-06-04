@@ -22,7 +22,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author saulg
+ * @author Saúl
  */
 @Named(value = "registro")
 @RequestScoped

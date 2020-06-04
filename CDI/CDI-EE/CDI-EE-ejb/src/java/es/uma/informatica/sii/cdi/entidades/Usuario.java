@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 /**
  *
- * @author mmanu
+ * @author Saúl y Manuel
  */
 @Entity
 public class Usuario implements Serializable {
@@ -36,7 +37,8 @@ public class Usuario implements Serializable {
     public Usuario(String username,String password){
         this.username=username;
         this.password=password;
-          
+        this.esta_inscrito_en = new ArrayList<>();
+        this.elige = new ArrayList<>();
     }
     
     public Usuario(String nombre,String email,int tlf, String username,String password){
@@ -45,7 +47,8 @@ public class Usuario implements Serializable {
         this.email=email;
         this.username=username;
         this.password=password;
-        
+        this.esta_inscrito_en = new ArrayList<>();
+        this.elige = new ArrayList<>();
     }
         
     @OneToMany(mappedBy = "pertenece_a")
@@ -53,14 +56,6 @@ public class Usuario implements Serializable {
     
     @ManyToMany(mappedBy = "es_elegida_por")
     private List<Actividad> elige;
-
-    public List<Inscripcion> getInscripcion() {
-        return esta_inscrito_en;
-    }
-
-    public void setInscripcion(List<Inscripcion> esta_inscrito_en) {
-        this.esta_inscrito_en = esta_inscrito_en;
-    }
 
     public String getNombre() {
         return nombre;

@@ -5,14 +5,17 @@
  */
 package es.uma.informatica.sii.cdi.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-
-
+/**
+ *
+ * @author Saúl
+ */
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findONGByName", query = "select o from ONG o where o.nombre = :oname"),
@@ -31,12 +34,14 @@ public class ONG extends Usuario {
     }
     public ONG(String username,String psw){
         super(username,psw);
+        this.gestiona = new ArrayList<>();
     }
     
     public ONG(String ubicacion,String web,String nombre,String email,int tlf, String username,String psw){
         super(nombre,email,tlf,username,psw);
         this.ubicacion=ubicacion;
         this.web=web;
+        this.gestiona = new ArrayList<>();
     }
 
     public List<Actividad> getGestiona() {

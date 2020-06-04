@@ -27,7 +27,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author elena,julio y nico
+ * @author Saúl
  */
 @Named(value = "mostrarProyectos")
 @SessionScoped

@@ -23,7 +23,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author elena y julio
+ * @author Saúl
  */
 @Stateless
 public class ProyectosImpl implements Proyectos {

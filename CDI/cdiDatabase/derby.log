@@ -1,8 +1,8 @@
-Mon Apr 27 20:29:42 CEST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.10.2.0 - (1582446) y está listo para aceptar las conexiones en el puerto 1527
+Wed Jun 03 20:55:47 CEST 2020 : Servidor de red Apache Derby: Se ha iniciado 10.10.2.0 - (1582446) y está listo para aceptar las conexiones en el puerto 1527
 ----------------------------------------------------------------
-Mon Apr 27 20:29:43 CEST 2020:
- Iniciando instancia a816c00e-0171-bce6-d97a-ffff94199d3e de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos D:\UNIVERSIDAD\Sistemas de Información para Internet\NetBeansProjects\Proyecto\CDI\cdiDatabase\cdi con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Wed Jun 03 20:55:47 CEST 2020:
+ Iniciando instancia a816c00e-0172-7b8a-1883-ffff935c5725 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos D:\UNIVERSIDAD\Sistemas de Información para Internet\CDI\CDI\cdiDatabase\sample con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
 Cargado desde file:/D:/Program%20Files/glassfish-4.1.1/javadb/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_241-b07
@@ -10,5 +10,22 @@ user.dir=D:\Program Files\glassfish-4.1.1\javadb
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=D:\UNIVERSIDAD\Sistemas de Información para Internet\NetBeansProjects\Proyecto\CDI\cdiDatabase
+derby.system.home=D:\UNIVERSIDAD\Sistemas de Información para Internet\CDI\CDI\cdiDatabase
+Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Jun 03 21:00:35 CEST 2020:
+Shutting down instance a816c00e-0172-7b8a-1883-ffff935c5725 on database directory D:\UNIVERSIDAD\Sistemas de Información para Internet\CDI\CDI\cdiDatabase\sample with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Wed Jun 03 21:00:35 CEST 2020 Thread[DRDAConnThread_3,5,main] (DATABASE = sample), (DRDAID = {2}), Database 'sample' shutdown.
+----------------------------------------------------------------
+Wed Jun 03 21:00:47 CEST 2020:
+ Iniciando instancia cf35407a-0172-7b8a-1883-ffff935c5725 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos D:\UNIVERSIDAD\Sistemas de Información para Internet\CDI\CDI\cdiDatabase\sample con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Cargado desde file:/D:/Program%20Files/glassfish-4.1.1/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_241-b07
+user.dir=D:\Program Files\glassfish-4.1.1\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=D:\UNIVERSIDAD\Sistemas de Información para Internet\CDI\CDI\cdiDatabase
 Cargador de clases de base de datos iniciado - derby.database.classpath=''

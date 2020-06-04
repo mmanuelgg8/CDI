@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="templates/layout.xhtml">
+        <ui:define name="title">Mis Actividades</ui:define>
+        <ui:define name="content"> 
+            <div class="card-body">
+                <h:dataTable value = "#{mostrarInscripciones.mostrarInscripciones()}" var = "inscripciones"
+                             styleClass = "table"
+                             headerClass = "tableHeader"
+                             rowClasses = "tableOddRow,tableEvenRow"
+                             columnClasses = "tableColumn"
+                             border="5"
+                             >
+
+                    <h:column class="tableColumn" >    				
+                        <f:facet name = "header">Usuario</f:facet>
+                            #{inscripciones.pertenece_a.nombre}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Actividad</f:facet>
+                            #{inscripciones.esta_asociada_a.nombre}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Fecha</f:facet>
+                            #{inscripciones.fecha.date}/#{inscripciones.fecha.month + 1}/#{inscripciones.fecha.year}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Estado</f:facet>
+                            #{inscripciones.estado}
+                    </h:column>
+                                     
+                    <h:column>
+
+                        <h:form>
+                        <h:commandButton  value="Anular Inscripción"  class="btn btn-danger fas fa-trash"/> 
+                        </h:form>
+
+                    </h:column>
+
+                </h:dataTable>
+            </div>
+
+
+        </ui:define>
+
+    </ui:composition>    
+
+
+
+</html>

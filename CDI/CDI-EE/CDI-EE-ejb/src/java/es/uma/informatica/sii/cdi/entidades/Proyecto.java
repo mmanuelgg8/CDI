@@ -14,7 +14,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
-
+/**
+ *
+ * @author Saúl y Manuel
+ */
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findProyectoByName", query = "select p from Proyecto p where p.nombre = :pname"),
@@ -45,7 +48,7 @@ public class Proyecto implements Serializable {
         this.requisitos=requisitos;
         this.fecha=fecha;
         this.estado=estado;
-        conformado_por=new ArrayList<>();
+        this.conformado_por=new ArrayList<>();
     }
   
     public List<Actividad> getConformado_por() {
@@ -63,9 +66,6 @@ public class Proyecto implements Serializable {
     public void setEs_creado_por(PDI es_creado_por) {
         this.es_creado_por = es_creado_por;
     }
-    
-    
-
 
     public Long getId() {
         return id;

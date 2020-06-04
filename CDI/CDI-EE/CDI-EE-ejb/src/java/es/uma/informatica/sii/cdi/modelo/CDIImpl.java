@@ -6,22 +6,27 @@
 package es.uma.informatica.sii.cdi.modelo;
 
 
+import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Alumno;
+import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author francis
+ * @author Saúl
  */
 @Stateless
 public class CDIImpl implements CDI {
@@ -207,7 +212,37 @@ public class CDIImpl implements CDI {
        em.merge(p);
     }
     
+    @Override
+    public void inscribirUsuario(Actividad a, Usuario u){
+        Inscripcion i = new Inscripcion(new Date(),true,u,a);
+        em.persist(i);
+        /*
+        List<Inscripcion> ins = u.getEsta_inscrito_en();
+        ins.add(i);
+        u.setEsta_inscrito_en(ins);
+        em.merge(u);
+        */
+        List<Usuario> users = a.getEs_elegida_por();
+        users.add(u);
+        a.setEs_elegida_por(users);
+        em.merge(a);
+        /*
+        
+        List<Inscripcion> insc = a.getLista_de_inscritos();
+        insc.add(i);
+        a.setLista_de_inscritos(insc);
+        */
+    }
 
-
-
+    @Override
+    public List<Inscripcion> mostrarInscripciones(Usuario user) {
+        return em.createNamedQuery("mostrarInscripciones").setParameter("user", user).getResultList();
+        
+    }
+    
+    @Override
+    public boolean estaInscrito(String a, Usuario u){
+        Actividad act = (Actividad) em.createNamedQuery("findActividadByName").setParameter("aname", a).getSingleResult();
+        return act.getEs_elegida_por().contains(u);
+    }
 }

@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author mmanu
+ * @author Saúl y Manuel
  */
 @Entity
 public class PAS extends Usuario implements Serializable {

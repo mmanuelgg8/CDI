@@ -41,7 +41,7 @@
                     </h:column>
                     <h:column>
                         <f:facet name = "header">ONG</f:facet>
-                            #{actividades.ONG.nombre}
+                            #{actividades.es_gestionada_por.nombre}
                     </h:column>
                     
                     <h:column>
@@ -58,9 +58,11 @@
                     </h:column>
                     
                     <h:column>
-                        <h:form>
-                        <h:commandButton  value="Inscribirse" class="btn btn-info fas fa-bell-o"/> 
-                        </h:form>
+                        
+                                <h:form>
+                                    <h:commandButton  value="Inscribirse" action="#{mostrarInscripciones.inscribir(actividades,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
+                                </h:form>
+
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
                                 <h:form>

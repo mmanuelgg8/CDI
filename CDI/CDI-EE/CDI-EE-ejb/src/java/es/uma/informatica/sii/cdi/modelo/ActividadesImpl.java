@@ -9,6 +9,7 @@ import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
+import es.uma.informatica.sii.cdi.entidades.Usuario;
 import static java.sql.DriverManager.println;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +25,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
 
 /**
  *
- * @author elena y julio
+ * @author Saúl
  */
 @Stateless
 public class ActividadesImpl implements Actividades {
@@ -99,6 +100,14 @@ public class ActividadesImpl implements Actividades {
     public List<Actividad> mostrarActividades() {
         return em.createNamedQuery("mostrarActividades").getResultList();
         
+    }
+    
+    @Override
+    public List<Actividad> mostrarActividades(Usuario user) {
+        List<Actividad> acts = em.createNamedQuery("mostrarActividades").getResultList();
+        List<Actividad> ins = em.createNamedQuery("mostrarActividadesByInscripcion").setParameter("user", user).getResultList();
+        acts.removeAll(ins);
+        return acts;
     }
 
     @Override

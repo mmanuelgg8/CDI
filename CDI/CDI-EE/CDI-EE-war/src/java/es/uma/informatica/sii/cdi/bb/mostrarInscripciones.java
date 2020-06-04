@@ -6,21 +6,36 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
+import es.uma.informatica.sii.cdi.modelo.CDI;
+import es.uma.informatica.sii.cdi.modelo.CDIException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
- * @author elena y julio 
+ * @author Saúl
  */
 @Named(value = "mostrarInscripciones")
 @RequestScoped
 public class mostrarInscripciones {
-     private List<Inscripcion> inscripciones;
+    @EJB
+    private CDI cdi;
+    
+    @Inject
+    private ControlAutorizacion ctrl;
+    
+    private List<Inscripcion> inscripciones;
+    
+    public mostrarInscripciones(){
+        
+    }
 
     public List<Inscripcion> getInscripciones() {
         return inscripciones;
@@ -29,34 +44,26 @@ public class mostrarInscripciones {
     public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
-
     
-
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
+    public List<Inscripcion> mostrarInscripciones() {
+        return cdi.mostrarInscripciones(ctrl.getUsuario()); 
     }
     
-    
-    
-    @Inject
-    private ControlAutorizacion ctrl;
-
-    
-    public mostrarInscripciones() {
-        inscripciones= new ArrayList<>();
-        
-        Inscripcion  i1 = new Inscripcion(new Date(2020,06,07),false);
-        Inscripcion  i2 = new Inscripcion(new Date(2020,04,03),true);
-        inscripciones.add(i1);
-        inscripciones.add(i2);
-        
-       
+    public String inscribir(Actividad a, Usuario u){
+        try {
+            cdi.inscribirUsuario(a,u);
+            ctrl.setUsuario(cdi.refrescarUsuario(u));
+        } catch (CDIException ex) {
+            Logger.getLogger(mostrarInscripciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "actividades.xhtml";
     }
 
+    public boolean noInscritoEn(String a){
+        //System.out.println("Nombre es " + a);
+        return !cdi.estaInscrito(a, ctrl.getUsuario());
+    }
+    
     public String lista_inscripciones(){  //
         
          return ctrl.inscripciones();
