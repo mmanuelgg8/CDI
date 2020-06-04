@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
+
 /**
  *
  * @author elena y julio 
@@ -17,7 +18,6 @@ import javax.ejb.Local;
 @Local
 public interface InformesLocal {
     public void crearInformes(Date fecha, boolean repor, String comentarios);
-    public void modificarInformes(Long id,Date fecha, boolean repor, String comentarios);
     public void eliminarInformes(Long id);
     public List<Informe> mostrarInformes();
     public Informe devuelveInformes(Long id);

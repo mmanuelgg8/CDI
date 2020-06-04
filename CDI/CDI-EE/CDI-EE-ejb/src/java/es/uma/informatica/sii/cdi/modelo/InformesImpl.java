@@ -32,31 +32,7 @@ public class InformesImpl implements InformesLocal {
         Informe i = new Informe(fecha,repor,comentarios);
         em.persist(i);
     }
-    @Override 
-    public void modificarInformes(Long id,Date fecha, boolean repor, String comentarios){
-        Informe i = null;
-        try{
-            Query query = em.createNamedQuery("findInformedById");
-            query.setParameter("informeId",id );
-            i = (Informe) query.getSingleResult();
-        } catch (NoResultException e){
-            
-        }
-        if( i== null){
-            try {
-                throw new CDIException();
-            } catch (CDIException ex) {
-                Logger.getLogger(InformesImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            i.setComentarios(comentarios);
-            i.setFecha(fecha);
-            i.setReportado(repor);
-            em.merge(i);
-        }
-        
-    }
-    
+   
     @Override
     public void eliminarInformes(Long id){
         Informe i = null;
@@ -99,9 +75,6 @@ public class InformesImpl implements InformesLocal {
         return i;
     }
 
-   
-    
-   
     
 
 }
