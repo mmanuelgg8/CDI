@@ -79,8 +79,13 @@ public class mostrarProyectos implements Serializable{
         return "proyectos.xhtml";
     }
   
-    public void modificar(){
-        //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or be translated to other class
+     public String modificar(String nombre){
+        p = projects.devuelveProyecto(nombre);
+        return "modificarProyectos.xhtml";
+    }
+    public String editando(){
+        projects.modificarProyectos(p.getNombre(), p.getRequisitos(),p.getFecha(), p.isEstado());
+        return "proyectos.xhtml";
     }
     
     public String anadir(){

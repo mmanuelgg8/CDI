@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findONGByName", query = "select o from ONG o where o.nombre = :oname"),
-    @NamedQuery(name = "mostrarONGs", query = "select o from ONG o")
+    @NamedQuery(name = "mostrarONGs", query = "select o.nombre from ONG o")
 })
 public class ONG extends Usuario {
     

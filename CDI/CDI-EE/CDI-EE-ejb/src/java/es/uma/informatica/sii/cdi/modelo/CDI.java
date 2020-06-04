@@ -31,7 +31,12 @@ public interface CDI {
     public void eliminarInforme(Informe i);
     public List<Informe> mostrarInformes(Inscripcion i);
     public void crearInformes(Date fecha, boolean reportado,String comentarios);
-
+    //Asignaturas
+    public void crearAsignaturas(Long id, String nombre, String grado, int curso);
+    public Asignatura devuelveAsignatura(String nombre);
+    public void eliminarAsignatura(String nombre);
+    public void refreshAsignatura(Asignatura a);
+    public List<Asignatura> mostrarAsignaturas();  
 
 }
 
