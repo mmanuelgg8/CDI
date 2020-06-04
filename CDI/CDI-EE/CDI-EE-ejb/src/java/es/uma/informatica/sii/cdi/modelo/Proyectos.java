@@ -18,7 +18,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author elena y julio
+ * @author Saúl
  */
 @Local
 public interface Proyectos {

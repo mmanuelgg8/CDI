@@ -6,12 +6,17 @@
 package es.uma.informatica.sii.cdi.modelo;
 
 
+import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Alumno;
+import es.uma.informatica.sii.cdi.entidades.Informe;
+import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.Asignatura;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
+import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -24,7 +29,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author 
+ * @author Saúl
  */
 @Stateless
 public class CDIImpl implements CDI {
@@ -210,6 +215,27 @@ public class CDIImpl implements CDI {
        em.merge(p);
     }
     
+    @Override
+    public void inscribirUsuario(Actividad a, Usuario u){
+        Inscripcion i = new Inscripcion(new Date(),true,u,a);
+        em.persist(i);
+        /*
+        List<Inscripcion> ins = u.getEsta_inscrito_en();
+        ins.add(i);
+        u.setEsta_inscrito_en(ins);
+        em.merge(u);
+        */
+        List<Usuario> users = a.getEs_elegida_por();
+        users.add(u);
+        a.setEs_elegida_por(users);
+        em.merge(a);
+        /*
+        
+        List<Inscripcion> insc = a.getLista_de_inscritos();
+        insc.add(i);
+        a.setLista_de_inscritos(insc);
+        */
+    }
     //CRUD ASIGNATURA
     
     @Override
@@ -280,5 +306,46 @@ public class CDIImpl implements CDI {
     
 
 
+    @Override
+    public List<Inscripcion> mostrarInscripciones(Usuario user) {
+        return em.createNamedQuery("mostrarInscripciones").setParameter("user", user).getResultList();
+        
+    }
+    
+    @Override
+    public boolean estaInscrito(String a, Usuario u){
+        Actividad act = (Actividad) em.createNamedQuery("findActividadByName").setParameter("aname", a).getSingleResult();
+        return act.getEs_elegida_por().contains(u);
+    }
+    
+    public void eliminarInscripcion(Inscripcion i){
+        Inscripcion ins = em.find(Inscripcion.class, i.getId());
+        if(ins == null) try {
+            throw new CDIException();
+        } catch (CDIException ex) {
+            Logger.getLogger(CDIImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        em.remove(ins);
+    }
+    
+    public void eliminarInforme(Informe i){
+        Informe in = em.find(Informe.class, i.getId());
+        if(in == null) try {
+            throw new CDIException();
+        } catch (CDIException ex) {
+            Logger.getLogger(CDIImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        em.remove(in);
+    }
+    
+    public List<Informe> mostrarInformes(Inscripcion i){
+        List<Informe> inf = em.createNamedQuery("mostrarInformesByInscripcion").setParameter("inscripcion", i).getResultList();
+        return inf;  
+    }
+    
+    public void crearInformes(Date fecha, boolean reportado,String comentarios){
+        Informe i = new Informe(fecha, reportado, comentarios);
+        em.persist(i);
+    }
 
 }

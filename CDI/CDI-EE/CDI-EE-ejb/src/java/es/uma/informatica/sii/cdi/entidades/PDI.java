@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author mmanu
+ * @author Saúl y Manuel
  */
 @Entity
 public class PDI extends Usuario implements Serializable {
@@ -45,10 +45,10 @@ public class PDI extends Usuario implements Serializable {
     }
     public PDI(String username,String psw){
         super(username,psw);
-        gestiona = new ArrayList();
-        crea = new ArrayList();
-        administra = new ArrayList();
-        enseña_en = new ArrayList();
+        this.gestiona = new ArrayList();
+        this.crea = new ArrayList();
+        this.administra = new ArrayList();
+        this.enseña_en = new ArrayList();
     }
     
     public PDI(String ap1,String ap2,String dni,String titulacion,String dpto,int despacho,String nombre,String email,int tlf, String username,String psw,boolean rol){
@@ -60,10 +60,10 @@ public class PDI extends Usuario implements Serializable {
         this.departamento=dpto;
         this.despacho=despacho;
         this.rol_gestor=rol;
-        gestiona = new ArrayList();
-        crea = new ArrayList();
-        administra = new ArrayList();
-        enseña_en = new ArrayList();
+        this.gestiona = new ArrayList();
+        this.crea = new ArrayList();
+        this.administra = new ArrayList();
+        this.enseña_en = new ArrayList();
     }
     
     public void setEnseña_en(List<Asignatura> enseña_en) {

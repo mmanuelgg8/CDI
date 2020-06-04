@@ -6,22 +6,42 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.*;
-import java.util.ArrayList;
+import es.uma.informatica.sii.cdi.modelo.CDI;
+import es.uma.informatica.sii.cdi.modelo.CDIException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
- * @author elena y julio
+ * @author Elena, Julio y Manuel
  */
 @Named(value = "mostrarInformes")
 @RequestScoped
 public class mostrarInformes {
-    
+    private Informe i;
+
     private List<Informe> informes;
+    @Inject
+    private CDI cdi;
+    @Inject
+    private ControlAutorizacion ctrl;
+
+    public Informe getI() {
+        return i;
+    }
+
+    public void setI(Informe i) {
+        this.i = i;
+    }
+    
+    public List<Informe> mostrarInformes(Inscripcion i) {
+        return cdi.mostrarInformes(i);
+    }
 
     public List<Informe> getInformes() {
         return informes;
@@ -30,36 +50,18 @@ public class mostrarInformes {
     public void setInformes(List<Informe> informes) {
         this.informes = informes;
     }
-
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
+ 
+    public String anadir(){      
+        return "crearInformes.xhtml";
     }
     
-    public void anadir(){
-        //TO BE MADE WITH THE BBDD IMPLEMENTATION
+    public String anadirInforme(){
+        cdi.crearInformes(new Date(), i.isReportado(),i.getComentarios());
+        return "informes.xhtml";
     }
     
-    public void eliminar(){
-        //TO BE MADE WITH THE BBDD IMPLEMENTATION
-    }
-    
-    
-    @Inject
-    private ControlAutorizacion ctrl;
-
-    public mostrarInformes() {
-        informes= new ArrayList<>();
-        
-        Informe  i1 = new Informe(new Date(2020,06,07),false, "no ha cumplido su tarea");
-        Informe  i2 = new Informe(new Date(2020,04,03),true,"el voluntario ha realizado las actividades correctamente");
-        informes.add(i1);
-        informes.add(i2);
-        
-       
+    public void eliminar(Informe i){
+        cdi.eliminarInforme(i);
     }
 
     public String lista_informes(){  //

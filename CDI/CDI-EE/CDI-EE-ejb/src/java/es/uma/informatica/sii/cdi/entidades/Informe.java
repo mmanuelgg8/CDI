@@ -4,9 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "mostrarInformesByInscripcion", query = "select i from Informe i where i.contenido = :inscripcion"),
+    @NamedQuery(name = "mostrarInformes", query = "select i from Informe i"),
+})
 public class Informe implements Serializable {
 
     @Id
@@ -15,6 +22,9 @@ public class Informe implements Serializable {
     private Date fecha;
     private boolean reportado;
     private String comentarios;
+    
+    @ManyToOne
+    private Inscripcion contenido;
     
     public Informe(){
         
@@ -25,7 +35,14 @@ public class Informe implements Serializable {
         this.reportado=repor;
         this.comentarios=comentarios;
     }
-    
+
+    public Inscripcion getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(Inscripcion contenido) {
+        this.contenido = contenido;
+    }
     
    public Long getId() {
         return id;

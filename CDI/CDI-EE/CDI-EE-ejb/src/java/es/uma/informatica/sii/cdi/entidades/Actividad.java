@@ -6,6 +6,7 @@
 package es.uma.informatica.sii.cdi.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -22,12 +23,12 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author mmanu
+ * @author Saúl
  */
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findActividadByName", query = "select a from Actividad a where a.nombre = :aname"),
-    @NamedQuery(name = "mostrarActividades", query = "select a from Actividad a")
+    @NamedQuery(name = "mostrarActividades", query = "select a from Actividad a"),
 })
 public class Actividad implements Serializable {
 
@@ -62,7 +63,8 @@ public class Actividad implements Serializable {
     private List<Inscripcion> lista_de_inscritos;
     
     public Actividad(){
-        
+        this.es_elegida_por = new ArrayList<>();
+        this.lista_de_inscritos = new ArrayList<>();
     }
 
     public Actividad(String nombre, String requisitos,Date fecha,boolean estado,int tipo,String zona,String horario,String informacion,ONG ong){
@@ -75,7 +77,8 @@ public class Actividad implements Serializable {
         this.horario=horario;
         this.informacion=informacion;
         this.es_gestionada_por=ong;
-        
+        this.es_elegida_por = new ArrayList<>();
+        this.lista_de_inscritos = new ArrayList<>();
     }
 
     public List<Usuario> getEs_elegida_por() {
@@ -117,21 +120,6 @@ public class Actividad implements Serializable {
     public void setLista_de_inscritos(List<Inscripcion> lista_de_inscritos) {
         this.lista_de_inscritos = lista_de_inscritos;
     }
-    
-    public List<Inscripcion> getInscripciones() {
-        return inscripciones;
-    }
-    
-    public ONG getONG(){
-        return es_gestionada_por;
-    }
-    
-    public void setInscripciones(List<Inscripcion> inscripciones) {
-        this.inscripciones = inscripciones;
-    }
-    @OneToMany
-    private List<Inscripcion> inscripciones;
-    
     
     public String getNombre() {
         return nombre;
@@ -212,14 +200,13 @@ public class Actividad implements Serializable {
         return hash;
     }
     
-    //Equals usa temporalmente nombre hasta que se implemente la BBDD
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Actividad)) {
             return false;
         }
         Actividad other = (Actividad) object;
-        if ((this.nombre == null && other.nombre != null) || (this.nombre != null && !this.nombre.equals(other.nombre))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;

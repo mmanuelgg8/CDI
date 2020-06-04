@@ -18,7 +18,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author nicol
+ * @author Saúl
  */
 @Named(value = "controlAutorizacion")
 @SessionScoped
@@ -28,9 +28,6 @@ public class ControlAutorizacion implements Serializable {
     private List<Actividad> actividades;
     private List<Proyecto> proyectos;
     private Informe informe;
-    
-    private String cuenta;
-    private String code;
     
     @EJB
     private CDI cdi;

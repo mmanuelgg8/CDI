@@ -48,8 +48,15 @@
                         
                         <tr>
                             <td>ONG: </td>
-                            <td><h:selectOneMenu value="#{mostrarActividades.a.ONG}" class="form-control form-control-user">
+                            <td><h:selectOneMenu value="#{mostrarActividades.nameONG}" class="form-control form-control-user">
                                     <f:selectItems value="#{mostrarActividades.mostrarONGs()}"/>
+                                </h:selectOneMenu></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Proyecto: </td>
+                            <td><h:selectOneMenu value="#{mostrarActividades.namePRO}" class="form-control form-control-user">
+                                    <f:selectItems value="#{mostrarProyectos.mostrarProyectos()}"/>
                                 </h:selectOneMenu></td>
                         </tr>
                         

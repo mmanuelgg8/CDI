@@ -6,7 +6,7 @@
 
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <ui:composition template="templates/layout-actividades.xhtml">
+    <ui:composition template="templates/layout.xhtml">
         <ui:define name="title">Actividades</ui:define>
         <ui:define name="content"> 
             <div class="card-body">
@@ -41,12 +41,12 @@
                     </h:column>
                     <h:column>
                         <f:facet name = "header">ONG</f:facet>
-                            #{actividades.ONG.nombre}
+                            #{actividades.es_gestionada_por.nombre}
                     </h:column>
                     
                     <h:column>
                         <f:facet name = "header">Fecha</f:facet>
-                        #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year}
+                        #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year + 1900}
                     </h:column>
                     <h:column>
                         <f:facet name = "header">Horario</f:facet>
@@ -59,8 +59,9 @@
                     
                     <h:column>
                         <h:form>
-                        <h:commandButton  value="Inscribirse" class="btn btn-info fas fa-bell-o"/> 
+                            <h:commandButton  value="Inscribirse" action="#{mostrarInscripciones.inscribir(actividades,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
                         </h:form>
+
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
                                 <h:form>

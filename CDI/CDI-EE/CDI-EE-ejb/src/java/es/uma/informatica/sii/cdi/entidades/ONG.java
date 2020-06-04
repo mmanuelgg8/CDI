@@ -5,14 +5,17 @@
  */
 package es.uma.informatica.sii.cdi.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-
-
+/**
+ *
+ * @author Saúl
+ */
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findONGByName", query = "select o from ONG o where o.nombre = :oname"),
@@ -23,21 +26,31 @@ public class ONG extends Usuario {
     private String ubicacion;
     private String web;
     
+    @OneToMany(mappedBy = "es_gestionada_por")
+    private List<Actividad> gestiona;
+    
     public ONG(){
         
     }
     public ONG(String username,String psw){
         super(username,psw);
+        this.gestiona = new ArrayList<>();
     }
     
     public ONG(String ubicacion,String web,String nombre,String email,int tlf, String username,String psw){
         super(nombre,email,tlf,username,psw);
         this.ubicacion=ubicacion;
         this.web=web;
+        this.gestiona = new ArrayList<>();
     }
-    
-    @OneToMany(mappedBy = "es_gestionada_por")
-    private List<Actividad> gestiona;
+
+    public List<Actividad> getGestiona() {
+        return gestiona;
+    }
+
+    public void setGestiona(List<Actividad> gestiona) {
+        this.gestiona = gestiona;
+    }
     
     public String getUbicacion() {
         return ubicacion;
@@ -82,7 +95,7 @@ public class ONG extends Usuario {
 
     @Override
     public String toString() {
-        return "ONG{" + "web=" + web + ", nombre=" + this.getNombre() + '}';
+        return this.getNombre();
     }
 
 
