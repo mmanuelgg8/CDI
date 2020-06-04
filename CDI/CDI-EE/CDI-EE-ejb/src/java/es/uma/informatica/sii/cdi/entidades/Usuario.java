@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 /**
@@ -50,7 +51,7 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "pertenece_a")
     private List<Inscripcion> esta_inscrito_en;
     
-    @OneToMany(mappedBy = "es_elegida_por")
+    @ManyToMany(mappedBy = "es_elegida_por")
     private List<Actividad> elige;
 
     public List<Inscripcion> getInscripcion() {

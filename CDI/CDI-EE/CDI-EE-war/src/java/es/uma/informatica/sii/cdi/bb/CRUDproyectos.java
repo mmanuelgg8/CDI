@@ -63,7 +63,7 @@ public class CRUDproyectos {
     private ControlAutorizacion ctrl;
 
     
-    public String editar(Long id)  {  
+    /*public String editar(Long id)  {  
         //Update actividad
         
         FacesMessage fm = null;
@@ -94,7 +94,7 @@ public class CRUDproyectos {
         return null;  
     
         
-    }
+    }*/
     
     public String eliminar(Long id){  
          //Delete proyecto

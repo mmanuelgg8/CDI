@@ -7,12 +7,19 @@ package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.ONG;
+import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
+import es.uma.informatica.sii.cdi.modelo.CDI;
+import es.uma.informatica.sii.cdi.modelo.CDIException;
+import es.uma.informatica.sii.cdi.modelo.Proyectos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -25,96 +32,70 @@ import javax.inject.Named;
 @Named(value = "mostrarProyectos")
 @SessionScoped
 public class mostrarProyectos implements Serializable{
-    private List<Proyecto> proyectos;
-    private List<Actividad>actividades;
+    private Proyecto p;
     @Inject
     private ControlAutorizacion ctrl;
+    @EJB
+    private Proyectos projects;
+    @EJB
+    private CDI cdi;
 
-    //Datos para crearProyecto()
-    private String nombre;
-    private String requisitos;
-    
+    public Proyecto getP() {
+        return p;
+    }
+
+    public void setP(Proyecto p) {
+        this.p = p;
+    }
     
     public mostrarProyectos() {
-        proyectos= new ArrayList<>();
-        actividades=new ArrayList<>();
-        ONG ong = new ONG("Málaga","www.ong-malaga.es","ong-malaga","malaga@ong.es",777777771,"mlgong","mlgong");
-        Actividad a1 = new Actividad("Actividad1","conocimientos sobre vacunas",(new Date(2020,06,03)),true,1,"Marbella","actividad de mañana","vacunar a los niños en centros escolares",ong);
-        Actividad a2 = new Actividad("Actividad2"," no hace falta ningún conocimiento para realizar la actividad",(new Date(2020,02,06)),true,0,"Madrid","actividad de tarde","ayudar a los necesitados ",ong);
-        actividades.add(a1);
-        actividades.add(a2);
-        Proyecto p1 = new Proyecto("Proyecto1","conocimientos básicos de cuidados intensivos",new Date(2020,06,05),true);
-        p1.setListaActividades(actividades);
-        proyectos.add(p1); 
+        p = new Proyecto();
     }
 
-    public List<Actividad> getActividades() {
-        return actividades;
-    }
-
-    public void setActividades(List<Actividad> actividades) {
-        this.actividades = actividades;
-    }
-
-    public List<Proyecto> getProyectos() {
-        return proyectos;
-    }
-
-    public void setProyectos(List<Proyecto> proyectos) {
-        this.proyectos = proyectos;
-    }
-
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
+    public List<Proyecto> mostrarProyectos(){
+        return projects.mostrarProyectos();
     }
     
     public String eliminar(String name){
-        Proyecto target = null;
-        for(Proyecto p: proyectos){
-            if(p.getNombre().equals(name)){
-                target = p;
-            }
+        try {
+            projects.eliminarProyectos(name);
+            PDI creator = (PDI) ctrl.getUsuario();
+            List<Proyecto> creados = creator.getCrea();
+            creados.remove(new Proyecto(name, "", new Date(), true));
+            creator.setCrea(creados);
+            cdi.modificarUsuario(creator);
+        } catch (CDIException ex) {
+            Logger.getLogger(mostrarProyectos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(target!=null) proyectos.remove(target);
         return "proyectos.xhtml";
     }
     
-    public String crear(){
-        Proyecto target = new Proyecto(nombre, requisitos, new Date(2020,06,20) ,true);
-        proyectos.add(target);
+    public String anadirProyecto(){
+        try {
+            projects.crearProyectos(p.getNombre(), p.getRequisitos(), new Date(), p.isEstado(), ctrl.getUsuario());
+            PDI creator = (PDI) ctrl.getUsuario();
+            List<Proyecto> creados = creator.getCrea();
+            creados.add(projects.devuelveProyecto(p.getNombre()));
+            creator.setCrea(creados);
+            cdi.modificarUsuario(creator);
+        } catch (CDIException ex) {
+            Logger.getLogger(mostrarProyectos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return "proyectos.xhtml";
     }
-    
-    
-    
-    public void modificar(){
-        //TO BE IMPLEMENTED WHEN THE DATABASE ARRIVES (or be translated to other class
+  
+     public String modificar(String nombre){
+        p = projects.devuelveProyecto(nombre);
+        return "modificarProyectos.xhtml";
+    }
+    public String editando(){
+        projects.modificarProyectos(p.getNombre(), p.getRequisitos(),p.getFecha(), p.isEstado());
+        return "proyectos.xhtml";
     }
     
     public String anadir(){
         return "crearProyectos.xhtml";
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getRequisitos() {
-        return requisitos;
-    }
-
-    public void setRequisitos(String requisitos) {
-        this.requisitos = requisitos;
-    }
-    
     
    
     public String lista_proyectos(){  

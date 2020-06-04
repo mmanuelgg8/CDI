@@ -8,10 +8,16 @@ package es.uma.informatica.sii.cdi.entidades;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findONGByName", query = "select o from ONG o where o.nombre = :oname"),
+    @NamedQuery(name = "mostrarONGs", query = "select o.nombre from ONG o")
+})
 public class ONG extends Usuario {
     
     private String ubicacion;

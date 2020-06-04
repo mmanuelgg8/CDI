@@ -2,12 +2,13 @@
 package es.uma.informatica.sii.cdi.modelo;
 
 
-import es.uma.informatica.sii.cdi.entidades.Usuario;
+import es.uma.informatica.sii.cdi.entidades.*;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author francis
+ * @author 
  */
 @Local
 public interface CDI {
@@ -17,6 +18,14 @@ public interface CDI {
     public Usuario refrescarUsuario(Usuario u) throws CDIException;
     public void modificarUsuario(Usuario u) throws CDIException;
     public void eliminarUsuario(Usuario u) throws CDIException;
-    public void solicitaCode();
+    public void solicitaCode(Usuario u) throws CDIException;
+    //Asignaturas
+    public void crearAsignaturas(Long id, String nombre, String grado, int curso);
+    public Asignatura devuelveAsignatura(String nombre);
+    public void eliminarAsignatura(String nombre);
+    public void refreshAsignatura(Asignatura a);
+    public List<Asignatura> mostrarAsignaturas();
+    //
+    
 }
 

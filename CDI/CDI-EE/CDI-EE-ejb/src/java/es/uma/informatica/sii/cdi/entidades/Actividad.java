@@ -8,12 +8,15 @@ package es.uma.informatica.sii.cdi.entidades;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -22,13 +25,17 @@ import javax.persistence.Temporal;
  * @author mmanu
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findActividadByName", query = "select a from Actividad a where a.nombre = :aname"),
+    @NamedQuery(name = "mostrarActividades", query = "select a from Actividad a")
+})
 public class Actividad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @Column(unique = true)
     private String nombre;
     private String requisitos;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -38,6 +45,21 @@ public class Actividad implements Serializable {
     private String Zona;
     private String horario;
     private String informacion;
+
+    @ManyToOne
+    private Proyecto pertenece_a;
+    
+    @ManyToMany
+    private List<Usuario> es_elegida_por;
+
+    @ManyToOne
+    private ONG es_gestionada_por;
+    
+    @ManyToOne
+    private PDI es_gestionada;
+    
+    @OneToMany(mappedBy = "esta_asociada_a")
+    private List<Inscripcion> lista_de_inscritos;
     
     public Actividad(){
         
@@ -56,20 +78,45 @@ public class Actividad implements Serializable {
         
     }
 
-    @ManyToOne
-    private Proyecto pertenece_a;
-    
-    @ManyToOne
-    private Usuario es_elegida_por;
+    public List<Usuario> getEs_elegida_por() {
+        return es_elegida_por;
+    }
 
-    @ManyToOne
-    private ONG es_gestionada_por;
-    
-    @ManyToOne
-    private PDI es_gestionada;
-    
-    @OneToMany(mappedBy = "esta_asociada_a")
-    private List<Inscripcion> lista_de_inscritos;
+    public void setEs_elegida_por(List<Usuario> es_elegida_por) {
+        this.es_elegida_por = es_elegida_por;
+    }
+
+    public Proyecto getPertenece_a() {
+        return pertenece_a;
+    }
+
+    public void setPertenece_a(Proyecto pertenece_a) {
+        this.pertenece_a = pertenece_a;
+    }
+
+    public ONG getEs_gestionada_por() {
+        return es_gestionada_por;
+    }
+
+    public void setEs_gestionada_por(ONG es_gestionada_por) {
+        this.es_gestionada_por = es_gestionada_por;
+    }
+
+    public PDI getEs_gestionada() {
+        return es_gestionada;
+    }
+
+    public void setEs_gestionada(PDI es_gestionada) {
+        this.es_gestionada = es_gestionada;
+    }
+
+    public List<Inscripcion> getLista_de_inscritos() {
+        return lista_de_inscritos;
+    }
+
+    public void setLista_de_inscritos(List<Inscripcion> lista_de_inscritos) {
+        this.lista_de_inscritos = lista_de_inscritos;
+    }
     
     public List<Inscripcion> getInscripciones() {
         return inscripciones;

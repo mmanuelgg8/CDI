@@ -32,11 +32,6 @@
                         </tr>
                         
                          <tr>
-                            <td>Password: </td>
-                            <td><h:inputSecret a:placeholder="*******" value="#{controlAutorizacion.usuario.password}" id="password" class="form-control form-control-user"/></td>
-                        </tr>
-                        
-                         <tr>
                             <td>Email: </td>
                             <td><h:inputText value="#{controlAutorizacion.usuario.email}" id="email" class="form-control form-control-user"/></td>
                         </tr>
@@ -53,10 +48,14 @@
                             <c:when test="#{controlAutorizacion.rol == 'PDI'}">
                                 <td><h:outputText value="Gestor: #{controlAutorizacion.rol_gestor}" class="form-control form-control-user"/></td>
                                 <tr>
+                            <c:choose>
+                                <c:when test="#{controlAutorizacion.rol_gestor == false}">
                             <td colspan="7">
                                 <h:commandButton value="Solicita ser gestor" action="#{controlAutorizacion.solicitaGestor()}" style="background-color: lightblue"/>
                                 <h:message for="gestor"/>
                             </td>
+                                    </c:when>
+                            </c:choose>
                         </tr>
                             </c:when>
                         </c:choose>

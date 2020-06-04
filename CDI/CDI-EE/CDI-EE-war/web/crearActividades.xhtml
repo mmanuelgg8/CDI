@@ -23,27 +23,34 @@
                 
                         <tr>
                             <td>Nombre: </td>
-                            <td><h:inputText value="#{mostrarActividades.nombre}" id="name" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{mostrarActividades.a.nombre}" id="name" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td>Requisitos: </td>
-                            <td><h:inputText value="#{mostrarActividades.requisitos}" id="username" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{mostrarActividades.a.requisitos}" id="username" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td>Zona: </td>
-                            <td><h:inputText value="#{mostrarActividades.zona}" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{mostrarActividades.a.zona}" class="form-control form-control-user"/></td>
                         </tr>
                        
                         <tr>
                             <td>Hora: </td>
-                            <td><h:inputText value="#{mostrarActividades.hora}" class="form-control form-control-user"/></td>
+                            <td><h:inputText value="#{mostrarActividades.a.horario}" class="form-control form-control-user"/></td>
                         </tr>
                         
                         <tr>
                             <td>Info: </td>
-                            <td><h:inputText value="#{mostrarActividades.info}" class="form-control form-control-user" required="true"/></td>
+                            <td><h:inputText value="#{mostrarActividades.a.informacion}" class="form-control form-control-user" required="true"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>ONG: </td>
+                            <td><h:selectOneMenu value="#{mostrarActividades.a.ONG}" class="form-control form-control-user">
+                                    <f:selectItems value="#{mostrarActividades.mostrarONGs()}"/>
+                                </h:selectOneMenu></td>
                         </tr>
                         
                         <tr>
