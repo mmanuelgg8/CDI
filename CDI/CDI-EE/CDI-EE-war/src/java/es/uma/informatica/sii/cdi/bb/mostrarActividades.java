@@ -23,7 +23,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author elena y julio
+ * @author saul
  */
 @Named(value = "mostrarActividades")
 @SessionScoped

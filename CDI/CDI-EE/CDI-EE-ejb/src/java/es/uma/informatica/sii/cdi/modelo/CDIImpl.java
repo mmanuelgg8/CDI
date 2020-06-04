@@ -7,6 +7,7 @@ package es.uma.informatica.sii.cdi.modelo;
 
 
 import es.uma.informatica.sii.cdi.entidades.Alumno;
+import es.uma.informatica.sii.cdi.entidades.Asignatura;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
@@ -17,11 +18,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
- * @author francis
+ * @author 
  */
 @Stateless
 public class CDIImpl implements CDI {
@@ -205,6 +208,74 @@ public class CDIImpl implements CDI {
        PDI p = (PDI) user;
        p.setRol_gestor(true);
        em.merge(p);
+    }
+    
+    //CRUD ASIGNATURA
+    
+    @Override
+    public void crearAsignaturas(Long id, String nombre, String grado, int curso){
+        Asignatura a = new Asignatura(id, nombre, grado, curso);
+        em.persist(a);
+    }
+    @Override
+    public Asignatura devuelveAsignatura(String nombre){
+        Asignatura a = null;
+        try{
+            Query query = em.createNamedQuery("findAsignaturaByNombre");
+            query.setParameter("asnom", nombre);
+            a = (Asignatura) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        return a;
+        
+    }
+    @Override
+    public void eliminarAsignatura(String nombre){
+        Asignatura a = null;
+        try{
+            Query query = em.createNamedQuery("findAsignaturaByNombre");
+            query.setParameter("asnom", nombre);
+            a = (Asignatura) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        if( a == null){
+            try {
+                throw new CDIException();
+            } catch (CDIException ex) {
+                Logger.getLogger(ActividadesImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            em.remove(a);
+        }
+    }
+    @Override
+    public void refreshAsignatura(Asignatura as){
+        Asignatura a = null;
+        try{
+            Query query = em.createNamedQuery("findAsignaturaByNombre");
+            query.setParameter("asnom", as.getNombre());
+            a = (Asignatura) query.getSingleResult();
+        } catch (NoResultException e){
+            
+        }
+        if( a == null){
+            try {
+                throw new CDIException();
+            } catch (CDIException ex) {
+                Logger.getLogger(ActividadesImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            a.setId(as.getId());
+            a.setCurso(as.getCurso());
+            a.setGrado(as.getGrado());
+            em.merge(a);
+        }
+    }
+    @Override
+    public List<Asignatura> mostrarAsignaturas(){
+        return em.createNamedQuery("mostrarAsignaturas").getResultList();
     }
     
 

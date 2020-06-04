@@ -23,7 +23,7 @@ import static jdk.nashorn.internal.runtime.Debug.id;
 
 /**
  *
- * @author elena y julio
+ * @author 
  */
 @Stateless
 public class ActividadesImpl implements Actividades {
