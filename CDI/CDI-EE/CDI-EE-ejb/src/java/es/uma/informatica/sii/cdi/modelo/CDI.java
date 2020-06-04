@@ -25,6 +25,7 @@ public interface CDI {
     public void inscribirUsuario(Actividad a, Usuario u);
     public List<Inscripcion> mostrarInscripciones(Usuario user);
     public boolean estaInscrito(String a, Usuario u);
+    public void eliminarInscripcion(Inscripcion i);
 
 
 }

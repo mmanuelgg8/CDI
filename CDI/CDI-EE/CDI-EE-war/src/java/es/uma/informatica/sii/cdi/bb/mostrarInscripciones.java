@@ -66,10 +66,10 @@ public class mostrarInscripciones {
     
     public String lista_inscripciones(){  //
         
-         return ctrl.inscripciones();
-        
-        
-        
+         return ctrl.inscripciones();   
     } 
     
+    public void eliminarInscripcion(Inscripcion i){
+        cdi.eliminarInscripcion(i);
+    }
 }
