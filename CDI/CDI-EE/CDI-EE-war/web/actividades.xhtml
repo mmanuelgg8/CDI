@@ -46,7 +46,7 @@
                     
                     <h:column>
                         <f:facet name = "header">Fecha</f:facet>
-                        #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year}
+                        #{actividades.fecha.date}/#{actividades.fecha.month + 1}/#{actividades.fecha.year + 1900}
                     </h:column>
                     <h:column>
                         <f:facet name = "header">Horario</f:facet>
@@ -58,10 +58,9 @@
                     </h:column>
                     
                     <h:column>
-                        
-                                <h:form>
-                                    <h:commandButton  value="Inscribirse" action="#{mostrarInscripciones.inscribir(actividades,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
-                                </h:form>
+                        <h:form>
+                            <h:commandButton  value="Inscribirse" action="#{mostrarInscripciones.inscribir(actividades,controlAutorizacion.usuario)}" class="btn btn-info fas fa-bell-o"/> 
+                        </h:form>
 
                         <c:choose>
                             <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >

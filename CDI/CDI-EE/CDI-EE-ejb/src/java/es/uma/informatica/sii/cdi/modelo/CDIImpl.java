@@ -245,4 +245,14 @@ public class CDIImpl implements CDI {
         Actividad act = (Actividad) em.createNamedQuery("findActividadByName").setParameter("aname", a).getSingleResult();
         return act.getEs_elegida_por().contains(u);
     }
+    
+    public void eliminarInscripcion(Inscripcion i){
+        Inscripcion ins = em.find(Inscripcion.class, i.getId());
+        if(ins == null) try {
+            throw new CDIException();
+        } catch (CDIException ex) {
+            Logger.getLogger(CDIImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        em.remove(ins);
+    }
 }

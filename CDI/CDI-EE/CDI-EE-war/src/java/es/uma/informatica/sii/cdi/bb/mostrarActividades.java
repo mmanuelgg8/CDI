@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,7 +28,7 @@ import javax.inject.Named;
  * @author Saúl
  */
 @Named(value = "mostrarActividades")
-@SessionScoped
+@RequestScoped
 public class mostrarActividades implements Serializable{
     private Actividad a;
     

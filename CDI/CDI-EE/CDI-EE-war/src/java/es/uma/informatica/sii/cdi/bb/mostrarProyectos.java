@@ -30,7 +30,7 @@ import javax.inject.Named;
  * @author Saúl
  */
 @Named(value = "mostrarProyectos")
-@SessionScoped
+@RequestScoped
 public class mostrarProyectos implements Serializable{
     private Proyecto p;
     @Inject
