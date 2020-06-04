@@ -3,9 +3,11 @@ package es.uma.informatica.sii.cdi.modelo;
 
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
+import es.uma.informatica.sii.cdi.entidades.Informe;
 import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -26,6 +28,9 @@ public interface CDI {
     public List<Inscripcion> mostrarInscripciones(Usuario user);
     public boolean estaInscrito(String a, Usuario u);
     public void eliminarInscripcion(Inscripcion i);
+    public void eliminarInforme(Informe i);
+    public List<Informe> mostrarInformes(Inscripcion i);
+    public void crearInformes(Date fecha, boolean reportado,String comentarios);
 
 
 }

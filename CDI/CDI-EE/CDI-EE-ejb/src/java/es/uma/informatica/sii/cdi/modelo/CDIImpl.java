@@ -8,10 +8,12 @@ package es.uma.informatica.sii.cdi.modelo;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
 import es.uma.informatica.sii.cdi.entidades.Alumno;
+import es.uma.informatica.sii.cdi.entidades.Informe;
 import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PAS;
 import es.uma.informatica.sii.cdi.entidades.PDI;
+import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.entidades.Usuario;
 import java.util.Date;
 import java.util.List;
@@ -255,4 +257,25 @@ public class CDIImpl implements CDI {
         }
         em.remove(ins);
     }
+    
+    public void eliminarInforme(Informe i){
+        Informe in = em.find(Informe.class, i.getId());
+        if(in == null) try {
+            throw new CDIException();
+        } catch (CDIException ex) {
+            Logger.getLogger(CDIImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        em.remove(in);
+    }
+    
+    public List<Informe> mostrarInformes(Inscripcion i){
+        List<Informe> inf = em.createNamedQuery("mostrarInformesByInscripcion").setParameter("inscripcion", i).getResultList();
+        return inf;  
+    }
+    
+    public void crearInformes(Date fecha, boolean reportado,String comentarios){
+        Informe i = new Informe(fecha, reportado, comentarios);
+        em.persist(i);
+    }
+
 }

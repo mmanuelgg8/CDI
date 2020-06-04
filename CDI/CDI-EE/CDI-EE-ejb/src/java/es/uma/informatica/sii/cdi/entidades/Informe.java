@@ -5,9 +5,15 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "mostrarInformesByInscripcion", query = "select i from Informe i where i.contenido = :inscripcion"),
+    @NamedQuery(name = "mostrarInformes", query = "select i from Informe i"),
+})
 public class Informe implements Serializable {
 
     @Id

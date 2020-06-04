@@ -12,7 +12,7 @@
                   <c:choose>
                     <c:when test="#{controlAutorizacion.rol == 'PDI' and controlAutorizacion.rol_gestor}" >
                         <h:form>
-                        <h:commandButton  value="Crear Informe" class="btn btn-success fas fa-spotify" action="#{mostrarInforme.anadir()}"/>
+                        <h:commandButton  value="Crear Informe" class="btn btn-success fas fa-spotify" action="#{mostrarInformes.anadir()}"/>
                         </h:form>
                     </c:when>
                 </c:choose>
@@ -42,7 +42,7 @@
                             <h:column>
                                 <f:facet name = "header">Editar</f:facet>
                                 <h:form>
-                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarInformes.eliminar(informes.id)}"/>
+                                <h:commandButton  value="Eliminar" class="btn btn-danger fas fa-trash" action="#{mostrarInformes.eliminar(informes)}"/>
                                 </h:form>
                             </h:column>
                         </c:when>

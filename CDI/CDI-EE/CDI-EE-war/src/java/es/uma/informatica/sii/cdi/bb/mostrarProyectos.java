@@ -5,23 +5,18 @@
  */
 package es.uma.informatica.sii.cdi.bb;
 
-import es.uma.informatica.sii.cdi.entidades.Actividad;
-import es.uma.informatica.sii.cdi.entidades.ONG;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.modelo.CDI;
 import es.uma.informatica.sii.cdi.modelo.CDIException;
 import es.uma.informatica.sii.cdi.modelo.Proyectos;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 

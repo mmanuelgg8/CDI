@@ -6,20 +6,16 @@
 package es.uma.informatica.sii.cdi.bb;
 
 import es.uma.informatica.sii.cdi.entidades.Actividad;
-import es.uma.informatica.sii.cdi.entidades.Inscripcion;
 import es.uma.informatica.sii.cdi.entidades.ONG;
-import es.uma.informatica.sii.cdi.entidades.Usuario;
 import es.uma.informatica.sii.cdi.entidades.PDI;
 import es.uma.informatica.sii.cdi.entidades.Proyecto;
 import es.uma.informatica.sii.cdi.modelo.Actividades;
-import es.uma.informatica.sii.cdi.modelo.CDI;
 import es.uma.informatica.sii.cdi.modelo.Proyectos;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
